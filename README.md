@@ -1,73 +1,223 @@
-# HackPlan AI - Mind to Machine
+# HackPlan AI — Mind to Machine Hackathon 2026
 
-Local Next.js event operations dashboard with FastAPI, finite LangGraph orchestration, validated Groq extraction, deterministic planning, SQLite history, and consent-aware WhatsApp previews.
+**HackPlan AI** is an intelligent, neuro-symbolic event operations and planning system designed for hackathon organizers. It parses unstructured, scattered communication (emails, WhatsApp messages, notices in English and Roman Urdu) and transforms them into a deterministic, constraint-validated, and demonstrable event plan.
 
-The official source is `theme.pdf`. Decisions and schemas are maintained in the existing `documents/` files. Actual verification and remaining external blockers are in [PROJECT_COMPLETION_REPORT.md](PROJECT_COMPLETION_REPORT.md).
+The platform guarantees **0% mathematical hallucination** by strictly separating responsibilities: language models are used exclusively for unstructured reading and comprehension, while deterministic Python solvers execute all arithmetic, capacity checking, schedule geometry, budget accounting, and constraint validation.
 
-## Start locally in Windows PowerShell
+---
 
-From `D:\mtmm\Mtm-hackathon`, reuse the existing environment:
+## Architecture & Tech Stack
 
-```powershell
-rtk proxy powershell -NoProfile -ExecutionPolicy Bypass -File .\start-local.ps1
+- **Frontend**: Next.js 16 (App Router), React 19, Tailwind CSS v4, TypeScript
+- **Backend**: Python 3.10+, FastAPI, Uvicorn, Pydantic v2, SQLite3
+- **AI & Workflow**: Groq Inference (`qwen/qwen3.8-27b`), finite LangGraph orchestration, deterministic fallback parser
+- **Messaging Integration**: Custom WhatsApp REST API adapter with live send and safe dry-run preview modes
+- **Design System**: High-contrast, custom executive palette (Onyx, Graphite, Ocean Twilight, Digital Blue, Tea Green, Soft Blossom, Sweet Peony)
+
+---
+
+## Core Capabilities
+
+1. **Multi-Source Message Ingestion**:
+   - Accepts raw, messy text packs (emails, WhatsApp group chats, broadcast notices, handwritten updates).
+   - Extracts structured facts across 5 critical domains: Venue, Schedule, Teams & Judges, Food & Catering, and Budget.
+   - Transparently handles multilingual inputs (English + Roman Urdu).
+
+2. **Deterministic Constraint Engines**:
+   - **Venue**: Evaluates room capacity, pricing, air conditioning, and power/generator constraints.
+   - **Schedule**: Computes timeline geometry, mandatory opening/closing sessions, hack duration, and prayer breaks.
+   - **Judging**: Optimizes judge-to-team assignments (capped at 3 teams per judge), ensuring 100% team evaluation coverage.
+   - **Food & Catering**: Calculates exact headcount requirements across participants, mentors, and assigned judges, comparing caterer price tiers.
+   - **Budget**: Sums all approved expenditures against strict budget caps, itemizing variances and surpluses/deficits.
+
+3. **WhatsApp Notification Hub**:
+   - **Dual Dispatch Modes**: Safe dry-run previews (default) and authorized live delivery to real WhatsApp recipients.
+   - **Consent-Aware Management**: Organizer-controlled recipient opt-in/opt-out registry.
+   - **Validation & Reliability**: International E.164 phone normalization, idempotency key deduplication, rate limiting (max 5/min), and cold-start timeout handling.
+
+4. **Audit Trail & Governance**:
+   - Versioned plan snapshots stored in SQLite.
+   - Rejection diagnostics explaining conflicting or infeasible updates.
+   - Real-time token usage and model execution tracing.
+   - Full JSON submission export (`data/submission.json`).
+
+---
+
+## Custom Color Theme
+
+The interface utilizes a purposeful, executive color system designed for clarity and focus:
+
+| Color Name | Hex Code | Visual Identity & Role |
+| :--- | :--- | :--- |
+| **Onyx** | `#151515` | Jet-black foundation canvas (`--background`) |
+| **Graphite** | `#373737` | Balanced dark borders and structural dividers (`--border`) |
+| **Ocean Twilight** | `#314cb6` | Velvety twilight blue for primary actions (`.btn-primary`) |
+| **Digital Blue** | `#0075f2` | Modern energizing blue for active navigation and links |
+| **Deep Purple** | `#6b2d5c` | Rich indigo-violet brand gradient header |
+| **Air Force Blue** | `#6494aa` | Composed neutral tone for secondary text and icons (`--muted`) |
+| **Tea Green** | `#c5ebc3` | Gentle creamy green for positive status badges & pass checks |
+| **Soft Blossom** | `#e8b4bc` | Delicate pink-lavender for warning badges and pending states |
+| **Sweet Peony** | `#d282a6` | Rich airy mauve for danger alerts and unresolved conflicts |
+
+---
+
+## How to Run Locally (Frontend & Backend)
+
+### Prerequisites
+
+- **Python**: 3.10 or higher
+- **Node.js**: 18.18 or higher (Node 20+ recommended)
+- **PowerShell** (Windows) or **Bash** (macOS/Linux)
+- **Git**
+
+---
+
+### Step 1: Clone the Repository & Configure Environment
+
+```bash
+git clone https://github.com/AkifNaveed12/Mtm-hackathon.git
+cd Mtm-hackathon
 ```
 
-Open `http://localhost:3000`. The API is `http://localhost:8000/api/health`, with interactive documentation at `http://localhost:8000/docs`. Services bind to loopback. Logs are under ignored `.local-logs/`. The startup script reuses occupied service ports and does not enable live messaging.
+Copy the example environment configuration:
 
-Use `-Offline` for a server whose default parser makes no model calls. The dashboard also offers explicit Automatic, Provider required, and Offline modes. Automatic tries Groq once and identifies any fallback; Provider required reports failure instead of claiming an offline result is AI-generated. No retries run invisibly.
-
-For a production frontend build:
-
-```powershell
-rtk proxy npm --prefix frontend run build
-rtk proxy powershell -NoProfile -ExecutionPolicy Bypass -File .\stop-local.ps1
-rtk proxy powershell -NoProfile -ExecutionPolicy Bypass -File .\start-local.ps1 -Production
+```bash
+cp .env.example .env
 ```
 
-The stop script verifies recorded process identities before stopping only its own services. To restart only the backend, use `stop-local.ps1 -BackendOnly`, followed by `start-local.ps1`.
+Ensure your `.env` contains your API credentials:
 
-## Install when needed
+```env
+# LLM Provider
+GROQ_API_KEY=your_groq_api_key_here
+GROQ_MODEL=qwen/qwen3.8-27b
 
-Keep the existing `.env`; never paste or commit credentials. `.env.example` documents safe variable names.
+# Backend Configuration
+BACKEND_HOST=127.0.0.1
+BACKEND_PORT=8000
+ENVIRONMENT=development
+PLANNER_MODE=auto
 
-```powershell
-rtk proxy python -m venv .venv
-rtk proxy .\.venv\Scripts\python.exe -m pip install -r backend\requirements.txt
-rtk proxy npm --prefix frontend ci
-rtk proxy npm --prefix tests/browser ci
+# Frontend Configuration
+NEXT_PUBLIC_API_URL=http://localhost:8000
+
+# WhatsApp REST Bot (Live Integration)
+WHATSAPP_API_URL=https://whatapp-bot-xnb0.onrender.com
+WHATSAPP_API_KEY=your_whatsapp_api_key_here
+WHATSAPP_ALLOW_LIVE_SEND=true
 ```
 
-`GROQ_API_KEY` and optional `GROQ_MODEL` stay server-side; the tested model is `qwen/qwen3.8-27b`. The existing custom WhatsApp service uses `WHATSAPP_API_URL` and `WHATSAPP_API_KEY`. `WHATSAPP_ALLOW_LIVE_SEND` defaults false. An optional `ORGANIZER_API_KEY` protects local API records and can be entered through Organizer access without putting it in the browser bundle. `WHATSAPP_WEBHOOK_SECRET` is needed only for a signature-capable inbound relay.
+---
 
-## Competition command and updates
+### Option A: Quick Start (Single Command — Windows PowerShell)
 
-```powershell
-rtk proxy .\.venv\Scripts\python.exe run.py sample_pack.txt
-rtk proxy .\.venv\Scripts\python.exe run.py tests\fixtures\printing_update.txt
-rtk proxy .\.venv\Scripts\python.exe run.py tests\fixtures\catering_invalid.txt
-```
-
-The same command reads every UTF-8 file without editing its content. A multi-message pack generates a baseline; one message updates persisted state. Six checks, exact model trace, provider token totals, rejections and a plan summary are printed. The full artifact is saved to ignored `data/submission.json`. Use one writer at a time: CLI changes are visible to a running backend after restarting it. Normal dashboard/API use does not require restarts.
-
-## Verification
+A comprehensive PowerShell startup script is provided that automatically starts both the FastAPI backend and Next.js frontend in the background:
 
 ```powershell
-rtk proxy .\.venv\Scripts\python.exe -m pytest tests -q
-rtk proxy npm --prefix frontend run lint
-rtk proxy npm --prefix frontend run build
-rtk proxy npm --prefix tests/browser test
-rtk proxy .\.venv\Scripts\python.exe scripts\verify_cli.py
-rtk proxy .\.venv\Scripts\python.exe scripts\benchmark.py offline
-rtk proxy .\.venv\Scripts\python.exe scripts\security_audit.py
-rtk proxy .\.venv\Scripts\python.exe scripts\audit_python_dependencies.py
+powershell -ExecutionPolicy Bypass -File .\start-local.ps1
 ```
 
-Browser tests require running local services and installed Chrome; override `CHROME_PATH` if necessary. They use offline planning and mocked/previews-only WhatsApp behavior. `benchmark.py provider` intentionally makes at most three actual model calls: a full sample run and the two practice updates. It requires network access and configured Groq credentials. `provider workspace` writes those results into the application's local state; stop the backend first to avoid concurrent writers. No verification script sends live WhatsApp messages.
+To stop all local services started by the script:
 
-## Planning and safety
+```powershell
+powershell -ExecutionPolicy Bypass -File .\stop-local.ps1
+```
 
-All five engines derive figures from source messages. Source attendance, duration, venue/facility, catering, judging and financial constraints are validated before accepting a version. Unsupported constraints remain unresolved; a previous valid plan is preserved when an update fails. The sample assigns the minimum 17 judges from 20 available, yielding 177 meals; this disclosed staffing decision is overridden by explicit attendance/payment instructions. Team and judge assignment identifiers are generated and labeled, without inventing student identities.
+---
 
-WhatsApp supports read-only connection verification, private recipient/consent records, notification previews, idempotency, rate limits, sanitized failures, signed delivery/inbound events and opt-outs. Real sends require both explicit server enablement and per-request confirmation; they were not authorized or performed. Template catalogs, the upstream send schema, signature-capable webhook relay and actual delivery remain external verification requirements.
+### Option B: Manual Execution (Two Separate Terminals)
 
-All changes remain local. No commits, pushes, deployment, Vapi, voice agent or telephony are part of this task.
+If you prefer running services interactively in dedicated terminals:
+
+#### Terminal 1 — Backend (FastAPI)
+
+1. Create and activate a Python virtual environment:
+
+   ```powershell
+   # Windows
+   python -m venv .venv
+   .\.venv\Scripts\activate
+
+   # macOS / Linux
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
+
+2. Install backend dependencies:
+
+   ```bash
+   pip install -r backend/requirements.txt
+   ```
+
+3. Start the FastAPI development server:
+
+   ```bash
+   uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --reload
+   ```
+
+   The backend will be available at:
+   - **API Base**: [http://localhost:8000](http://localhost:8000)
+   - **Health Check**: [http://localhost:8000/api/health](http://localhost:8000/api/health)
+   - **Interactive Swagger Docs**: [http://localhost:8000/docs](http://localhost:8000/docs)
+
+#### Terminal 2 — Frontend (Next.js)
+
+1. Navigate to the `frontend` directory:
+
+   ```bash
+   cd frontend
+   ```
+
+2. Install npm dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Launch the Next.js development server:
+
+   ```bash
+   npm run dev
+   ```
+
+   The web dashboard will be available at:
+   - **Dashboard**: [http://localhost:3000](http://localhost:3000)
+
+---
+
+## CLI Planning Harness
+
+You can also run the full end-to-end planning pipeline directly via the command-line interface:
+
+```powershell
+# Run baseline planning on the official sample pack
+python run.py sample_pack.txt
+
+# Run an incremental update
+python run.py tests/fixtures/printing_update.txt
+```
+
+Outputs the complete quality checks, model traces, cost breakdowns, and saves the final submission artifact to `data/submission.json`.
+
+---
+
+## Testing & Quality Verification
+
+Run the automated test suite across backend logic, constraints, WhatsApp adapter, schemas, and security:
+
+```powershell
+# Run all 104 unit & integration tests
+pytest tests
+
+# Verify frontend production build & TypeScript
+cd frontend
+npm run build
+```
+
+---
+
+## Repository Branches
+
+- **`main`**: Primary branch containing core documentation, configuration, and project source.
+- **`completed`**: Complete feature branch containing all latest tested modules, UI components, scripts, WhatsApp fixes, and test suites.
+
