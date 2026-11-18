@@ -1,0 +1,234 @@
+{
+  "components": [
+    {
+      "id": "GAL-001",
+      "path": "ui-library/navigation/navbars/pill-nav-react-bits/instructions.md",
+      "name": "PillNav",
+      "finding": "Capsule navigation with split/joined logo, fill or gliding highlight, controlled activeHref or local selection. Native anchors/buttons, named nav and focus rings. ResizeObserver collapses to menu; Escape restores toggle focus; outside click closes. onMenuToggle does not report outside/Escape/resize closes; route wiring and logo asset required.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B I J",
+        "limited": "A E F G",
+        "notApplicable": "C D"
+      },
+      "visual": "Medium: raised pills, glass/solid/none surface, dark/light tokens",
+      "layout": "Marketing navigation; responsive collapsed mobile navigation",
+      "intensity": "medium",
+      "motion": "Native RAF spring indicator and press; CSS rolling labels/fill; Web Animations intro, logo spin and mobile panel. Event-driven; stops settled; no scroll dependency. Reduced motion skips intro/spin/panel and snaps springs; residual dot color transition and instantaneous press scale remain.",
+      "motionDetails": {
+        "type": "Indicator spring, fill, label roll, entrance, logo spin, panel reveal",
+        "trigger": "Mount, pointer, focus, click, active-page change, menu toggle",
+        "library": "Native RAF, Web Animations API, CSS",
+        "continuous": false,
+        "scroll": false,
+        "interactive": true,
+        "mobile": "Auto-collapse with native menu buttons; default 44px header but inner targets smaller; touch skips hover",
+        "performance": "Event-driven RAF stops settled; resize measurement and backdrop blur; limit links",
+        "reducedMotion": "Strong partial support; engine reads preference on effect setup, no live preference listener; dot color CSS remains",
+        "intensity": "Moderate"
+      },
+      "dependencies": "react; Tailwind CSS styling",
+      "commands": [
+        "npx shadcn@latest add @react-bits/PillNav-TS-TW"
+      ],
+      "license": "License requires verification",
+      "source": "React Bits",
+      "sourceURL": "Component URL not supplied; library index https://reactbits.dev/llms.txt",
+      "attribution": "React Bits named; individual author, obligations and commercial terms not supplied",
+      "implementation": "ui-library/navigation/navbars/pill-nav-react-bits/instructions.md:306 (embedded source; no standalone TSX file)",
+      "status": "Local source inspected; runtime not tested",
+      "sourceLine": 306,
+      "category": "navigation",
+      "versions": "Not specified; latest registry CLI is unpinned",
+      "optionalDependencies": "No optional npm dependency documented; visual options are props",
+      "existingProjectDependencyStatus": "Unverified; compare target application manifest before installation"
+    },
+    {
+      "id": "GAL-002",
+      "path": "ui-library/reusable/galleries/circular-gallery-react-bits/instructions.md",
+      "name": "CircularGallery",
+      "finding": "WebGL2 curved infinite image carousel with DOM labels and hidden roving buttons, drag/wheel/arrow navigation, click expansion and close. Parent height required; no visible fallback without WebGL2. Wheel prevents page scrolling. Keyboard opens even when openOnClick false and does not invoke onItemClick; Home/End do not transfer focus. Empty list loads demo photos. Remote images need CORS; default font fetches Google Fonts.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "B",
+        "notApplicable": "A C D E F G"
+      },
+      "visual": "High: curved photographic strip, ripple deformation, shadows, fading edges",
+      "layout": "Interactive horizontal gallery / editorial showcase",
+      "intensity": "high",
+      "motion": "Native WebGL2/RAF; mount intro, drag/wheel inertia and snapping, hover lift, expanded image interpolation. Optional autoScroll loops; default event-driven. Reduced disables intro/wave/auto and snaps scroll/open but hover and focus-ring easing and close-button fade remain.",
+      "motionDetails": {
+        "type": "Arc carousel, inertia, ripple, expansion",
+        "trigger": "Mount, drag, wheel, keyboard, hover, optional autoScroll",
+        "library": "Native WebGL2 and RAF; CSS close opacity",
+        "continuous": "Only autoScroll or settling; autoScroll render loop continues even while hover pauses drift",
+        "scroll": "Consumes local wheel; not page-scroll storytelling",
+        "interactive": true,
+        "mobile": "touch-pan-y and vertical gesture escape; responsive container; test GPU and small viewport",
+        "performance": "DPR capped 2, intersection/document visibility gating, texture cache and cleanup; loads all images, many mesh draws",
+        "reducedMotion": "Partial: main travel/auto/wave suppressed; hover lift and ring fades retained; preference captured once",
+        "intensity": "Prominent"
+      },
+      "dependencies": "react; Tailwind CSS styling",
+      "commands": [
+        "npx shadcn@latest add @react-bits/CircularGallery-TS-TW"
+      ],
+      "license": "License requires verification",
+      "source": "React Bits",
+      "sourceURL": "Component URL absent; library index https://reactbits.dev/llms.txt",
+      "attribution": "React Bits named; author and license obligations unspecified; picsum.photos demo assets and Google Fonts require separate verification",
+      "implementation": "ui-library/reusable/galleries/circular-gallery-react-bits/instructions.md:458 (embedded source; no standalone TSX file)",
+      "status": "Local source inspected; runtime not tested",
+      "sourceLine": 458,
+      "category": "reusable",
+      "versions": "Not specified; latest registry CLI is unpinned",
+      "optionalDependencies": "No optional npm dependency documented; visual options are props",
+      "existingProjectDependencyStatus": "Unverified; compare target application manifest before installation"
+    },
+    {
+      "id": "GAL-003",
+      "path": "ui-library/reusable/galleries/flex-carousel-react-bits/instructions.md",
+      "name": "FlexCarousel",
+      "finding": "OGL WebGL2 infinite photo row through refractive lens, expanding selected photo and captions/counter. Keyboard arrows/Home/End/Enter/Space/Escape and focus ring. Needs parent height; blank without WebGL2 and no visible fallback. Default captures vertical wheel; set captureWheel false for normal page scrolling. Caption rendered below row despite prose saying above. Empty input substitutes demo images; no explicit autoplay pause control.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I",
+        "limited": "B J",
+        "notApplicable": "A C D E F G"
+      },
+      "visual": "Experimental refractive photo ribbon, chromatic dispersion, morphing selected image",
+      "layout": "Interactive horizontal gallery / marketing showcase",
+      "intensity": "experimental",
+      "motion": "OGL WebGL2 with native RAF spring scrolling, lens deformation, focus enlargement and entrance; CSS caption/counter motion. Optional autoplay continuous. Reduced turns entrance to fade and disables autoplay/energy/liquid/parallax, but scroll/focus springs and cursor-follow remain.",
+      "motionDetails": {
+        "type": "Refractive lens carousel; spring scroll, image expansion, entrance and captions",
+        "trigger": "Mount after image load, drag, wheel, keyboard, optional pointer lens/autoplay",
+        "library": "ogl rendering; native RAF; CSS",
+        "continuous": "Optional autoplay; otherwise settling only",
+        "scroll": "Local wheel capture; not page-scroll trigger",
+        "interactive": true,
+        "mobile": "Responsive container and touch vertical escape, GPU-heavy; fixed parent height required",
+        "performance": "Two rendering passes, 12 chromatic taps, all images loaded; 4.5M pixel budget and DPR 2 cap; intersection gating; document-hidden callback restarts but frame does not explicitly gate document.hidden",
+        "reducedMotion": "Partial; travel/focus and optional followCursor springs remain, counter-opacity fade remains",
+        "intensity": "Experimental"
+      },
+      "dependencies": "react; ogl; Tailwind CSS styling",
+      "commands": [
+        "npx shadcn@latest add @react-bits/FlexCarousel-TS-TW"
+      ],
+      "license": "License requires verification",
+      "source": "React Bits",
+      "sourceURL": "Component URL absent; library index https://reactbits.dev/llms.txt",
+      "attribution": "React Bits named; individual author/obligations/commercial terms unspecified; Unsplash sample assets separate verification",
+      "implementation": "ui-library/reusable/galleries/flex-carousel-react-bits/instructions.md:519 (embedded source; no standalone TSX file)",
+      "status": "Local source inspected; runtime not tested",
+      "sourceLine": 519,
+      "category": "reusable",
+      "versions": "Not specified; latest registry CLI is unpinned",
+      "optionalDependencies": "No optional npm dependency documented; visual options are props",
+      "existingProjectDependencyStatus": "Unverified; compare target application manifest before installation"
+    },
+    {
+      "id": "GAL-004",
+      "path": "ui-library/reusable/galleries/flex-carousel-react-bits/instructions.md",
+      "name": "Digits",
+      "finding": "Counter helper renders zero-padded decimal digit reels. Each digit includes ten stacked numerals, so hide decorative reels from assistive technology or supply one accessible numeric label when reused independently.",
+      "domains": {
+        "primary": "",
+        "secondary": "H I J",
+        "limited": "A B C D E F G",
+        "notApplicable": ""
+      },
+      "visual": "Low: inline tabular digit reels",
+      "layout": "Carousel counter / numeric status helper",
+      "intensity": "low",
+      "motion": "600ms CSS translateY on value changes; motion-reduce disables transition; not continuous or scroll-driven",
+      "motionDetails": {
+        "type": "Digit reel",
+        "trigger": "value prop change",
+        "library": "CSS",
+        "continuous": false,
+        "scroll": false,
+        "interactive": false,
+        "mobile": "Inline text; supports responsive font sizing",
+        "performance": "Ten spans per digit; inexpensive for short counters",
+        "reducedMotion": "motion-reduce:transition-none",
+        "intensity": "Subtle"
+      },
+      "dependencies": "react; Tailwind CSS styling; no ogl needed when extracted alone",
+      "commands": [],
+      "license": "License requires verification",
+      "source": "React Bits",
+      "implementation": "ui-library/reusable/galleries/flex-carousel-react-bits/instructions.md:497 (embedded source; no standalone TSX file)",
+      "status": "Local source inspected; runtime not tested",
+      "sourceLine": 497,
+      "category": "reusable",
+      "versions": "Not specified; latest registry CLI is unpinned",
+      "optionalDependencies": "No optional npm dependency documented; visual options are props",
+      "existingProjectDependencyStatus": "Unverified; compare target application manifest before installation"
+    },
+    {
+      "id": "GAL-005",
+      "path": "ui-library/reusable/galleries/Masonry-react-bits/instructions.md",
+      "name": "Masonry",
+      "finding": "Responsive shortest-column photo grid with spans, scroll reveals, hover captions, mouse reorder and body-portal lightbox. Native tile links/buttons and focus restoration. Lightbox declares aria-modal but lacks focus trap/background inert; resize does not directly recalculate open frame. Reorder lacks keyboard/touch equivalent and persistence. Explicit image dimensions avoid measurement delay; every image renders without lazy loading. Hover captions need always mode on touch.",
+      "domains": {
+        "primary": "H I",
+        "secondary": "J",
+        "limited": "A B F G",
+        "notApplicable": "C D E"
+      },
+      "visual": "Medium to high: asymmetric photography grid, rounded images, gradient captions; choose no hover/reveal/parallax for restrained collections",
+      "layout": "Masonry/asymmetric image grid; image library; gallery lightbox",
+      "intensity": "medium",
+      "motion": "Native RAF spring reveal/reflow and drag; CSS hover zoom/lift/tilt; Web Animations removal and shared-image lightbox; optional scroll parallax. Event-driven. Reduced snaps initial layout/reveal and lightbox but CSS hover/caption/image fade, optional parallax and drag settlement remain.",
+      "motionDetails": {
+        "type": "Scroll entrance, layout spring, hover transform, lightbox morph, optional parallax",
+        "trigger": "Intersection, resize/items/reorder, pointer, click, scroll",
+        "library": "Native RAF, Web Animations API and CSS",
+        "continuous": false,
+        "scroll": "Intersection reveal by default; optional parallax",
+        "interactive": true,
+        "mobile": "Auto columns and small-screen lightbox padding; touch drag intentionally disabled; captions hover not reliable on touch",
+        "performance": "All images DOM-loaded, per-tile springs and scroll geometry reads; no virtualization; use explicit sizes and modest item count",
+        "reducedMotion": "Partial: reveal/reflow/lightbox guarded; parallax and CSS hover not guarded; test preference while interacting",
+        "intensity": "Moderate; prominent with parallax/tilt"
+      },
+      "dependencies": "react; react-dom; @hugeicons/react; @hugeicons/core-free-icons; Tailwind CSS styling",
+      "commands": [
+        "npx shadcn@latest add @react-bits/Masonry-TS-TW"
+      ],
+      "license": "License requires verification",
+      "source": "React Bits",
+      "sourceURL": "Component URL absent; library index https://reactbits.dev/llms.txt",
+      "attribution": "React Bits named; sample photo titles Alexey Topolyanskiy/Roberto Nickson and Unsplash links are asset attribution, not component authorship; terms unspecified",
+      "implementation": "ui-library/reusable/galleries/Masonry-react-bits/instructions.md:374 (embedded source; no standalone TSX file)",
+      "status": "Local source inspected; runtime not tested",
+      "sourceLine": 374,
+      "category": "reusable",
+      "versions": "Not specified; latest registry CLI is unpinned",
+      "optionalDependencies": "No optional npm dependency documented; visual options are props",
+      "existingProjectDependencyStatus": "Unverified; compare target application manifest before installation"
+    }
+  ],
+  "bundles": [
+    {
+      "path": "ui-library/navigation/navbars/pill-nav-react-bits/instructions.md",
+      "status": "local source reviewed"
+    },
+    {
+      "path": "ui-library/reusable/galleries/circular-gallery-react-bits/instructions.md",
+      "status": "local source reviewed"
+    },
+    {
+      "path": "ui-library/reusable/galleries/flex-carousel-react-bits/instructions.md",
+      "status": "local source reviewed"
+    },
+    {
+      "path": "ui-library/reusable/galleries/Masonry-react-bits/instructions.md",
+      "status": "local source reviewed"
+    }
+  ],
+  "status": "All four assigned local bundles fully inspected; external sources and runtime not verified"
+}

@@ -1,0 +1,376 @@
+{
+  "components": [
+    {
+      "id": "COMP-102",
+      "path": "ui-library/grids/magic-bento-react-bits/instructions.md",
+      "name": "MagicBento",
+      "finding": "Responsive dense bento feature grid with light/dark rounded surfaces, pointer glow, optional stars/tilt/magnetism and linked or button cards. Built-in visuals are decorative simulations, not dashboards/services. 4/2/1 columns measured by ResizeObserver; text is clamped.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B E",
+        "limited": "A F G",
+        "notApplicable": "C D I J"
+      },
+      "visual": "Medium-to-high; rounded neutral feature illustration with glow",
+      "layout": "Bento feature grid",
+      "motion": "Native RAF springs/light/canvas plus CSS keyframes; entrance at 15% intersection; pointer and click replay; optional star loop and hover cursors/packets; no scroll-progress transform. Reduced-motion checked only at mount suppresses intro, tilt, magnetism, stars and wave; light easing and CSS color/switch transitions remain. disableAnimations captured in mount closure; runtime changes need review.",
+      "dependencies": "react; @hugeicons/react; @hugeicons/core-free-icons",
+      "license": "License requires verification",
+      "implementation": "Embedded instructions.md line 934; no standalone TSX",
+      "source": "React Bits via explicit bundle heading and registry",
+      "sourceURL": "Not supplied; generic reactbits.dev/llms.txt only",
+      "status": "Local full source inspected; runtime not tested",
+      "limitations": "Requires parent CSS variables/styles; no real data/service. Limit motion and replace simulated claims.",
+      "motionDetails": {
+        "library": "Native RAF / Canvas2D / CSS, no GSAP or Motion import",
+        "trigger": "Intersection entrance, pointer, click",
+        "continuous": "Conditional hover/star/illustration loops",
+        "scroll": "Intersection only, scroll remeasures",
+        "interactive": true,
+        "mobile": "4/2/1 measured grid, pointerdown and keyboard click; verify small row heights and touch",
+        "performance": "Per-card canvas optional; global listeners; RAF stops settled/offscreen, CSS loops need gating",
+        "reducedMotion": "Partial; mount-only preference and residual light/CSS easing"
+      },
+      "commands": [
+        "npx shadcn@latest add @react-bits/MagicBento-TS-TW"
+      ]
+    },
+    {
+      "id": "COMP-103",
+      "path": "ui-library/grids/magic-bento-react-bits/instructions.md",
+      "name": "AnalyticsVisual",
+      "finding": "Decorative SVG area plot with hardcoded 12-point CHART and pointer scrub value/date, no keyboard scrub or data props. Parent hides visual from accessibility tree.",
+      "domains": {
+        "primary": "H",
+        "secondary": "",
+        "limited": "A F G",
+        "notApplicable": "B C D E I J"
+      },
+      "visual": "Medium; neutral illustrative artwork within MagicBento theme",
+      "layout": "Parent-dependent decorative feature artwork",
+      "motion": "CSS line draw/area fade on parent entrance/replay; pointer scrub and fade; no own RAF loop.",
+      "dependencies": "react; parent MagicBento CSS variables/styles",
+      "license": "License requires verification",
+      "implementation": "Embedded instructions.md line 603; no standalone TSX",
+      "source": "React Bits via explicit bundle heading and registry",
+      "sourceURL": "Not supplied; generic reactbits.dev/llms.txt only",
+      "status": "Local full source inspected; runtime not tested",
+      "limitations": "Parent-dependent decorative renderer. No independent data API or service; default parent marks it aria-hidden. Extract with parent styles and replace sample facts before operational use.",
+      "motionDetails": {
+        "library": "CSS under parent MagicBento; no standalone engine",
+        "trigger": "Parent intersection entrance/replay; pointer scrub",
+        "continuous": false,
+        "scroll": "Parent entrance only",
+        "interactive": true,
+        "mobile": "Fits parent grid slot; parent container queries hide artwork at small heights; no independent layout",
+        "performance": "SVG/DOM only; parent engine separate",
+        "reducedMotion": "Parent data-motion gating removes keyframes; local transitions may remain"
+      },
+      "commands": [
+        "npx shadcn@latest add @react-bits/MagicBento-TS-TW"
+      ]
+    },
+    {
+      "id": "COMP-104",
+      "path": "ui-library/grids/magic-bento-react-bits/instructions.md",
+      "name": "DashboardVisual",
+      "finding": "Decorative bar visualization with hardcoded weekly $48.2k and seven BARS; not a financial dashboard.",
+      "domains": {
+        "primary": "H",
+        "secondary": "",
+        "limited": "A F G",
+        "notApplicable": "B C D E I J"
+      },
+      "visual": "Medium; neutral illustrative artwork within MagicBento theme",
+      "layout": "Parent-dependent decorative feature artwork",
+      "motion": "CSS staggered scaleY entrance and hover color; no continuous own loop.",
+      "dependencies": "react; parent MagicBento CSS variables/styles",
+      "license": "License requires verification",
+      "implementation": "Embedded instructions.md line 704; no standalone TSX",
+      "source": "React Bits via explicit bundle heading and registry",
+      "sourceURL": "Not supplied; generic reactbits.dev/llms.txt only",
+      "status": "Local full source inspected; runtime not tested",
+      "limitations": "Parent-dependent decorative renderer. No independent data API or service; default parent marks it aria-hidden. Extract with parent styles and replace sample facts before operational use.",
+      "motionDetails": {
+        "library": "CSS under parent MagicBento; no standalone engine",
+        "trigger": "Parent intersection entrance/replay",
+        "continuous": false,
+        "scroll": "Parent entrance only",
+        "interactive": false,
+        "mobile": "Fits parent grid slot; parent container queries hide artwork at small heights; no independent layout",
+        "performance": "SVG/DOM only; parent engine separate",
+        "reducedMotion": "Parent data-motion gating removes keyframes; local transitions may remain"
+      },
+      "commands": [
+        "npx shadcn@latest add @react-bits/MagicBento-TS-TW"
+      ]
+    },
+    {
+      "id": "COMP-105",
+      "path": "ui-library/grids/magic-bento-react-bits/instructions.md",
+      "name": "CollaborationVisual",
+      "finding": "Decorative document illustration with simulated named cursors and selection, not collaboration.",
+      "domains": {
+        "primary": "H",
+        "secondary": "",
+        "limited": "A F G",
+        "notApplicable": "B C D E I J"
+      },
+      "visual": "Medium; neutral illustrative artwork within MagicBento theme",
+      "layout": "Parent-dependent decorative feature artwork",
+      "motion": "CSS entrance/selection plus active-card 9s looping cursor paths and blinking caret.",
+      "dependencies": "react; parent MagicBento CSS variables/styles",
+      "license": "License requires verification",
+      "implementation": "Embedded instructions.md line 733; no standalone TSX",
+      "source": "React Bits via explicit bundle heading and registry",
+      "sourceURL": "Not supplied; generic reactbits.dev/llms.txt only",
+      "status": "Local full source inspected; runtime not tested",
+      "limitations": "Parent-dependent decorative renderer. No independent data API or service; default parent marks it aria-hidden. Extract with parent styles and replace sample facts before operational use.",
+      "motionDetails": {
+        "library": "CSS under parent MagicBento; no standalone engine",
+        "trigger": "Parent intersection entrance/replay; parent active-card hover",
+        "continuous": "Active-card cursor/caret loop",
+        "scroll": "Parent entrance only",
+        "interactive": false,
+        "mobile": "Fits parent grid slot; parent container queries hide artwork at small heights; no independent layout",
+        "performance": "SVG/DOM only; parent engine separate",
+        "reducedMotion": "Parent data-motion gating removes keyframes; local transitions may remain"
+      },
+      "commands": [
+        "npx shadcn@latest add @react-bits/MagicBento-TS-TW"
+      ]
+    },
+    {
+      "id": "COMP-106",
+      "path": "ui-library/grids/magic-bento-react-bits/instructions.md",
+      "name": "AutomationVisual",
+      "finding": "Decorative ordered install/build/test/deploy illustration with fixed durations, animated statuses, not execution monitoring.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B E",
+        "limited": "A F",
+        "notApplicable": "C D G I J"
+      },
+      "visual": "Medium; neutral illustrative artwork within MagicBento theme",
+      "layout": "Parent-dependent decorative feature artwork",
+      "motion": "CSS staged statuses/rail with infinite spinner rotation even after opacity reaches zero; entrance and click/hover replay.",
+      "dependencies": "react; parent MagicBento CSS variables/styles; @hugeicons/react; @hugeicons/core-free-icons",
+      "license": "License requires verification",
+      "implementation": "Embedded instructions.md line 786; no standalone TSX",
+      "source": "React Bits via explicit bundle heading and registry",
+      "sourceURL": "Not supplied; generic reactbits.dev/llms.txt only",
+      "status": "Local full source inspected; runtime not tested",
+      "limitations": "Parent-dependent decorative renderer. No independent data API or service; default parent marks it aria-hidden. Extract with parent styles and replace sample facts before operational use.",
+      "motionDetails": {
+        "library": "CSS under parent MagicBento; no standalone engine",
+        "trigger": "Parent intersection entrance/replay",
+        "continuous": "Spinner rotates even when transparent",
+        "scroll": "Parent entrance only",
+        "interactive": false,
+        "mobile": "Fits parent grid slot; parent container queries hide artwork at small heights; no independent layout",
+        "performance": "SVG/DOM only; parent engine separate",
+        "reducedMotion": "Parent data-motion gating removes keyframes; local transitions may remain"
+      },
+      "commands": [
+        "npx shadcn@latest add @react-bits/MagicBento-TS-TW"
+      ]
+    },
+    {
+      "id": "COMP-107",
+      "path": "ui-library/grids/magic-bento-react-bits/instructions.md",
+      "name": "IntegrationVisual",
+      "finding": "Decorative four-brand integration hub with packet animation; no real integrations.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B E",
+        "limited": "A F",
+        "notApplicable": "C D G I J"
+      },
+      "visual": "Medium; neutral illustrative artwork within MagicBento theme",
+      "layout": "Parent-dependent decorative feature artwork",
+      "motion": "CSS node entrance/line draw and active-card continuous 1.8s packets.",
+      "dependencies": "react; parent MagicBento CSS variables/styles; @hugeicons/react; @hugeicons/core-free-icons",
+      "license": "License requires verification",
+      "implementation": "Embedded instructions.md line 829; no standalone TSX",
+      "source": "React Bits via explicit bundle heading and registry",
+      "sourceURL": "Not supplied; generic reactbits.dev/llms.txt only",
+      "status": "Local full source inspected; runtime not tested",
+      "limitations": "Parent-dependent decorative renderer. No independent data API or service; default parent marks it aria-hidden. Extract with parent styles and replace sample facts before operational use.",
+      "motionDetails": {
+        "library": "CSS under parent MagicBento; no standalone engine",
+        "trigger": "Parent intersection entrance/replay; parent active-card hover",
+        "continuous": "Active-card packet loop",
+        "scroll": "Parent entrance only",
+        "interactive": false,
+        "mobile": "Fits parent grid slot; parent container queries hide artwork at small heights; no independent layout",
+        "performance": "SVG/DOM only; parent engine separate",
+        "reducedMotion": "Parent data-motion gating removes keyframes; local transitions may remain"
+      },
+      "commands": [
+        "npx shadcn@latest add @react-bits/MagicBento-TS-TW"
+      ]
+    },
+    {
+      "id": "COMP-108",
+      "path": "ui-library/grids/magic-bento-react-bits/instructions.md",
+      "name": "SecurityVisual",
+      "finding": "Decorative SSO/2FA rows and span switches; not controls or security functionality.",
+      "domains": {
+        "primary": "H",
+        "secondary": "",
+        "limited": "A F G",
+        "notApplicable": "B C D E I J"
+      },
+      "visual": "Medium; neutral illustrative artwork within MagicBento theme",
+      "layout": "Parent-dependent decorative feature artwork",
+      "motion": "CSS switch entrance; no genuine toggle; transitions remain without parent data-motion.",
+      "dependencies": "react; parent MagicBento CSS variables/styles; @hugeicons/react; @hugeicons/core-free-icons",
+      "license": "License requires verification",
+      "implementation": "Embedded instructions.md line 883; no standalone TSX",
+      "source": "React Bits via explicit bundle heading and registry",
+      "sourceURL": "Not supplied; generic reactbits.dev/llms.txt only",
+      "status": "Local full source inspected; runtime not tested",
+      "limitations": "Parent-dependent decorative renderer. No independent data API or service; default parent marks it aria-hidden. Extract with parent styles and replace sample facts before operational use.",
+      "motionDetails": {
+        "library": "CSS under parent MagicBento; no standalone engine",
+        "trigger": "Parent intersection entrance/replay",
+        "continuous": false,
+        "scroll": "Parent entrance only",
+        "interactive": false,
+        "mobile": "Fits parent grid slot; parent container queries hide artwork at small heights; no independent layout",
+        "performance": "SVG/DOM only; parent engine separate",
+        "reducedMotion": "Parent data-motion gating removes keyframes; local transitions may remain"
+      },
+      "commands": [
+        "npx shadcn@latest add @react-bits/MagicBento-TS-TW"
+      ]
+    },
+    {
+      "id": "COMP-109",
+      "name": "Hyperspeed",
+      "path": "ui-library/landing/heros/hyperspeed-react-bits/instructions.md",
+      "finding": "Immersive 3D road with opposing light trails, poles, dust, wet-road reflections and bloom. Click/hold boosts speed and FOV; pointer steers. Absolute full-container canvas needs sized parent; decorative hero, no navigation or CTA. WebGL creation has no fallback catch, no keyboard boost or pause control.",
+      "domains": {
+        "primary": "H",
+        "secondary": "",
+        "limited": "B I J",
+        "notApplicable": "A C D E F G"
+      },
+      "visual": "Experimental neon 3D night-road or pale light theme",
+      "layout": "Full-bleed 3D hero background",
+      "motion": "Three.js shaders and native RAF continuously move road/traffic; pointer boost/steer; offscreen gated. Reduced-motion mount check slows time to 30% and disables boost FOV but does not stop motion or steering.",
+      "motionDetails": {
+        "library": "three + native RAF/GLSL; no GSAP/Motion",
+        "trigger": "Mount continuous; pointerdown boost; pointermove steer",
+        "continuous": true,
+        "scroll": "No scroll-progress animation; IntersectionObserver gating",
+        "interactive": true,
+        "mobile": "ResizeObserver and touch-pan-y; high GPU cost; requires mobile testing",
+        "performance": "High: instancing, 5 bloom render targets, multiple passes; DPR capped 2 and offscreen pause; disposes GPU resources",
+        "reducedMotion": "Partial mount-only preference, 30% speed and fixed boost FOV, continuous motion remains"
+      },
+      "dependencies": "react; three",
+      "commands": [
+        "npx shadcn@latest add @react-bits/Hyperspeed-TS-TW"
+      ],
+      "license": "License requires verification",
+      "source": "React Bits explicit heading/registry",
+      "sourceURL": "Original component URL not supplied; generic reactbits.dev/llms.txt",
+      "implementation": "Embedded instructions.md line 651; no standalone TSX",
+      "status": "Local full source inspected; runtime not tested",
+      "limitations": "Do not layer with other moving hero backgrounds; provide static fallback/pause and keyboard action if boost matters. Version unspecified."
+    },
+    {
+      "id": "COMP-110",
+      "name": "SplashCursor",
+      "path": "ui-library/landing/heros/splash-cursor/instructions.md",
+      "finding": "Experimental rainbow or palette fluid ink overlay following pointer/touch with click splashes. Fixed full viewport by default (z-index 50), optional contained parent. Pointer-events-none and aria-hidden; no business interaction. Gracefully blank without WebGL2/float framebuffers.",
+      "domains": {
+        "primary": "",
+        "secondary": "H",
+        "limited": "B I J",
+        "notApplicable": "A C D E F G"
+      },
+      "visual": "Experimental organic fluid ink/glow",
+      "layout": "Decorative cursor overlay or contained hero accent",
+      "motion": "Native WebGL2 fluid solver and RAF; 1.1s mount stroke, pointer/touch trails and splashes. Runs until quiet timeout (2.2*trail+0.4)s then clears. Reduced-motion only suppresses intro; all pointer and touch fluid remains.",
+      "motionDetails": {
+        "library": "Native WebGL2 GLSL + RAF; react only",
+        "trigger": "Mount intro, pointermove/down, touchstart/move",
+        "continuous": "Runs during activity and trail-decay timeout, not permanently",
+        "scroll": "No scroll trigger",
+        "interactive": true,
+        "mobile": "Passive touch support; adjustable quality low/medium/high; costly high default",
+        "performance": "High multi-pass pressure solver 10/16/20 iterations plus optional bloom; DPR cap 2; context recovery and cleanup; no intersection gating",
+        "reducedMotion": "Partial: mount-only skips intro, does not disable reactive simulation"
+      },
+      "dependencies": "react",
+      "commands": [
+        "npx shadcn@latest add @react-bits/SplashCursor-TS-TW"
+      ],
+      "license": "License requires verification",
+      "source": "React Bits explicit heading/registry",
+      "sourceURL": "Original URL not supplied; generic reactbits.dev/llms.txt",
+      "implementation": "Embedded instructions.md line 371; no standalone TSX",
+      "status": "Local full source inspected; runtime not tested",
+      "limitations": "May obscure focus/text even though clicks pass through. Prefer contained marketing accent, not data entry or operational screens. No asset or extra package requirements."
+    },
+    {
+      "id": "COMP-111",
+      "name": "FlowingMenu",
+      "path": "ui-library/navigation/menus/flowing-menu-react-bits/instructions.md",
+      "finding": "Large stacked editorial navigation rows with spring-stretched inverse band and repeated image/text marquee. Semantic named nav, native links/buttons, aria-current and focus outline. Pointer hover, keyboard focus and touch-down reveal band. Needs explicit parent height, links/actions, short labels and validated images; meta text is aria-hidden.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I",
+        "limited": "B J",
+        "notApplicable": "A C D E F G"
+      },
+      "visual": "High-intensity typography-led inverse band navigation",
+      "layout": "Full-height marketing/editorial navigation list",
+      "motion": "Native RAF spring band/clip-path and marquee plus Web Animations entrance; mount, hover, focus, touch. Continuous while band covered; no scroll dependency. Reduced preference checked each frame snaps band/roll, stops marquee and skips entrance, but opacity transition remains; RAF still busy while covered even reduced.",
+      "motionDetails": {
+        "library": "Native RAF + Web Animations API + CSS; no GSAP/Motion",
+        "trigger": "Mount, pointer hover, focus-visible, touch-down",
+        "continuous": "Marquee while covered; RAF still loops under reduced motion when covered",
+        "scroll": "None",
+        "interactive": true,
+        "mobile": "Native link/button touch; min-h-14 rows, container-relative typography; parent height and long labels need testing",
+        "performance": "Per-row measurements and duplicated images/text; no intersection gate; reduce rows/images",
+        "reducedMotion": "Stops marquee and band interpolation, skips entrance; opacity and unnecessary RAF remain"
+      },
+      "dependencies": "react; @hugeicons/react; @hugeicons/core-free-icons",
+      "commands": [
+        "npx shadcn@latest add @react-bits/FlowingMenu-TS-TW"
+      ],
+      "license": "License requires verification",
+      "source": "React Bits explicit heading/registry",
+      "sourceURL": "Original URL not supplied; generic reactbits.dev/llms.txt",
+      "implementation": "Embedded instructions.md line 216; no standalone TSX",
+      "status": "Local full source inspected; runtime not tested",
+      "limitations": "Icon imports required as written even with showArrow=false; optional images are remote Unsplash samples without rights evidence. Do not combine with other marquee/hero motion."
+    }
+  ],
+  "bundles": [
+    {
+      "path": "ui-library/grids/magic-bento-react-bits/instructions.md",
+      "status": "Local full source inspected",
+      "lines": 1715
+    },
+    {
+      "path": "ui-library/landing/heros/hyperspeed-react-bits/instructions.md",
+      "status": "Local full source inspected",
+      "lines": 1424
+    },
+    {
+      "path": "ui-library/landing/heros/splash-cursor/instructions.md",
+      "status": "Local full source inspected",
+      "lines": 1351
+    },
+    {
+      "path": "ui-library/navigation/menus/flowing-menu-react-bits/instructions.md",
+      "status": "Local full source inspected",
+      "lines": 977
+    }
+  ]
+}

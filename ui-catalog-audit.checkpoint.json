@@ -1,0 +1,2220 @@
+{
+  "schema": 1,
+  "status": "complete-source-review",
+  "totalBundles": 65,
+  "localBundlesRead": 65,
+  "identifiedComponents": 109,
+  "nextBundle": null,
+  "countingRule": "Independent renderers/providers counted; repeated copies of same demo within one file counted once; column render callbacks are subordinate implementation.",
+  "components": [
+    {
+      "id": "COMP-001",
+      "path": "ui-library/charts/chart-assistant-ui/instructions.md",
+      "name": "PlotMetricToolUI",
+      "finding": "AI tool metric renderer; area variant receives label, value, delta and points. Actual Chart source absent.",
+      "domains": {
+        "primary": "B",
+        "secondary": "G",
+        "limited": "A C E F H",
+        "notApplicable": "D I J"
+      }
+    },
+    {
+      "id": "COMP-002",
+      "path": "ui-library/charts/chart-assistant-ui/instructions.md",
+      "name": "MyRuntimeProvider",
+      "finding": "Nonvisual runtime/provider wiring with toolkit; toolkit absent.",
+      "domains": {
+        "primary": "B",
+        "secondary": "",
+        "limited": "A E F H",
+        "notApplicable": "C D G I J"
+      }
+    },
+    {
+      "id": "COMP-003",
+      "path": "ui-library/dashboards/data-showcase/data-table-shadcn-ui/instructions.md",
+      "name": "DialogSignInDemo",
+      "finding": "Sky-tinted sign-in dialog, labeled email/password, social icon buttons; nested forms and no submit/OAuth handlers.",
+      "domains": {
+        "primary": "H",
+        "secondary": "A B F I J",
+        "limited": "C D E G",
+        "notApplicable": ""
+      }
+    },
+    {
+      "id": "COMP-004",
+      "path": "ui-library/dashboards/data-showcase/data-table-shadcn-ui/instructions.md",
+      "name": "DataTableDemo",
+      "finding": "Bordered selectable payment table; right-aligned USD amounts; sorting/filtering/pagination models have no exposed controls.",
+      "domains": {
+        "primary": "A C F",
+        "secondary": "E G I",
+        "limited": "B D H J",
+        "notApplicable": ""
+      }
+    },
+    {
+      "id": "COMP-005",
+      "path": "ui-library/dashboards/data-showcase/data-table-with-search-shadcn-ui/instructions.md",
+      "name": "DataTableDensityDemo",
+      "finding": "Selectable payment table with three row-density settings; no search input despite folder name. Compact touch targets require review.",
+      "domains": {
+        "primary": "A C F G",
+        "secondary": "E I",
+        "limited": "B D H J",
+        "notApplicable": ""
+      }
+    },
+    {
+      "id": "COMP-006",
+      "path": "ui-library/dashboards/data-tables/data-table-option-2-shadcn-ui/instructions.md",
+      "name": "TableWithVerticalLinesDemo",
+      "finding": "Static four-column invoice table with vertical dividers, caption and footer; sample total is wrong ($2500 versus row sum $1750).",
+      "domains": {
+        "primary": "C I",
+        "secondary": "A F G",
+        "limited": "B D E H J",
+        "notApplicable": ""
+      }
+    },
+    {
+      "id": "COMP-007",
+      "path": "ui-library/dashboards/data-tables/simple-data-table-shadcn-ui/instructions.md",
+      "name": "TableDemo",
+      "finding": "Static four-column invoice table, caption and footer; sample total is wrong ($2500 versus row sum $1750).",
+      "domains": {
+        "primary": "C I",
+        "secondary": "A F G",
+        "limited": "B D E H J",
+        "notApplicable": ""
+      }
+    },
+    {
+      "id": "COMP-008",
+      "path": "ui-library/typographies/h1-shadcn-ui/instructions.md",
+      "name": "TypographyH1Demo",
+      "finding": "Page heading: text-3xl, extrabold, balanced wrapping, md:text-4xl.",
+      "domains": {
+        "primary": "",
+        "secondary": "A B C D E F G H I J",
+        "limited": "",
+        "notApplicable": ""
+      }
+    },
+    {
+      "id": "COMP-009",
+      "path": "ui-library/typographies/h2-shadcn-ui/instructions.md",
+      "name": "TypographyH2Demo",
+      "finding": "Section heading: text-3xl semibold.",
+      "domains": {
+        "primary": "",
+        "secondary": "A B C D E F G H I J",
+        "limited": "",
+        "notApplicable": ""
+      }
+    },
+    {
+      "id": "COMP-010",
+      "path": "ui-library/typographies/h3-shadcn-ui/instructions.md",
+      "name": "TypographyH3Demo",
+      "finding": "Subsection heading: text-2xl semibold, max-sm:w-full.",
+      "domains": {
+        "primary": "",
+        "secondary": "A B C D E F G H I J",
+        "limited": "",
+        "notApplicable": ""
+      }
+    },
+    {
+      "id": "COMP-011",
+      "path": "ui-library/typographies/h4-shadcn-ui/instructions.md",
+      "name": "TypographyH4Demo",
+      "finding": "Minor heading: text-xl semibold.",
+      "domains": {
+        "primary": "",
+        "secondary": "A B C D E F G H I J",
+        "limited": "",
+        "notApplicable": ""
+      }
+    },
+    {
+      "id": "COMP-012",
+      "path": "ui-library/typographies/italic-decent-shadcn-ui/instructions.md",
+      "name": "TypographyBlockQuoteDemo",
+      "finding": "Editorial blockquote with left border, pl-6, italics and max-w-2xl.",
+      "domains": {
+        "primary": "H J",
+        "secondary": "",
+        "limited": "A B C D E F G I",
+        "notApplicable": ""
+      }
+    },
+    {
+      "id": "COMP-013",
+      "path": "ui-library/dashboards/drawers/cart-drawer-shadcn-ui/instructions.md",
+      "name": "DrawerCart",
+      "category": "dashboards",
+      "source": "shadcn Studio; registry @ss-components/drawer-13 and documented destination",
+      "implementation": "Embedded drawer-13.tsx; suggested destination components/shadcn-studio/drawer/drawer-13.tsx, not an existing file",
+      "finding": "Right-side product cart drawer with scrollable item summaries, separators, totals and footer actions. Remove and Checkout have no handlers; totals are hardcoded and do not follow items.",
+      "domains": {
+        "primary": "I",
+        "secondary": "",
+        "limited": "H J",
+        "notApplicable": "A B C D E F G"
+      },
+      "visual": {
+        "style": "Neutral bordered product thumbnails, muted descriptions, destructive outline remove buttons",
+        "layout": "Right drawer; stacked products and footer",
+        "intensity": "Medium"
+      },
+      "interaction": "Primitive-managed open/close; items prop drives rows; scrollable list; no cart mutation or payment logic",
+      "motion": {
+        "implementation": "No explicit animation in local code; primitive source absent",
+        "trigger": "Drawer trigger/close, CSS hover/focus colors",
+        "continuous": false,
+        "scrollDependent": false,
+        "reducedMotion": "Requires verification in drawer primitive",
+        "mobile": "No local breakpoint rules; drawer width, focus trap and touch behavior require verification",
+        "performance": "No virtualization; remote images lack explicit loading policy; test large carts"
+      },
+      "dependencies": [
+        {
+          "package": "lucide-react",
+          "version": "Not specified",
+          "requirement": "Required by imports",
+          "command": "Not specified"
+        },
+        {
+          "package": "react",
+          "version": "^19",
+          "requirement": "Declared environment"
+        },
+        {
+          "package": "tailwindcss",
+          "version": "^4",
+          "requirement": "Declared styling environment"
+        },
+        {
+          "package": "typescript",
+          "version": "^5",
+          "requirement": "Declared build environment"
+        }
+      ],
+      "localDependencies": [
+        "@/components/ui/button",
+        "@/components/ui/drawer",
+        "@/components/ui/separator"
+      ],
+      "commands": [
+        "npx shadcn@latest add @ss-components/drawer-13",
+        "npx shadcn@latest add button drawer separator"
+      ],
+      "license": "License requires verification",
+      "sourceURL": "Original component URL not specified; remote image URLs in original instructions",
+      "attribution": "Author, attribution obligations and commercial restrictions not specified",
+      "limitations": [
+        "Two repeated copies represent one component.",
+        "No quantity control or explicit empty state.",
+        "Price is a formatted string; totals need numeric source data.",
+        "Image alt uses item name; keyboard/focus/escape behavior inherited from absent primitive.",
+        "no-scrollbar utility definition not provided.",
+        "No browser validation."
+      ]
+    },
+    {
+      "id": "COMP-014",
+      "path": "ui-library/dashboards/drawers/nooverlay-scrollable-content-drawer-shadcn-ui/instructions.md",
+      "name": "DrawerNoOverlay",
+      "finding": "Low-intensity nonmodal right detail panel; scrollable text, close action; Learn more inactive; escaped underscore in one copy. No explicit width breakpoint; hidden scrollbar.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B G H J",
+        "limited": "C D I",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "react; lucide-react; local button/drawer",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-015",
+      "path": "ui-library/dashboards/drawers/profile-drawer-shadcn-ui/instructions.md",
+      "name": "DrawerProfile",
+      "finding": "Low-intensity right contact panel with avatar, verified badge, information and teams; static data; avatar alt/fallback disagree with displayed name; no explicit close button.",
+      "domains": {
+        "primary": "A F",
+        "secondary": "H J",
+        "limited": "B C D E G I",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "react; lucide-react; local avatar/button/drawer/separator",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-016",
+      "path": "ui-library/dashboards/drawers/scrollable-content-drawer-shadcn-ui/instructions.md",
+      "name": "DrawerScrollableContent",
+      "finding": "Low-intensity right detail drawer; title/description, scrolling body, close button; Learn more inactive. Primitive default modality must be checked.",
+      "domains": {
+        "primary": "F H",
+        "secondary": "A E G J",
+        "limited": "B C D I",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "react; lucide-react; local button/drawer",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-017",
+      "path": "ui-library/dashboards/kanbans/professional-karban-shadcn-ui/instructions.md",
+      "name": "KanbanDemo",
+      "finding": "Medium-density three-column task board; 14rem minimum columns with horizontal overflow, local reordering only; no persistence; priority encoded only by colored dot.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B H J",
+        "limited": "C D G I",
+        "notApplicable": ""
+      },
+      "motion": "CSS hover shadow; rotated drag overlay; dnd-kit sort/drop transitions; no reduced-motion branch",
+      "dependencies": "react; lucide-react; local button/badge/kanban/cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-018",
+      "path": "ui-library/dashboards/kanbans/professional-karban-shadcn-ui/instructions.md",
+      "name": "TaskCard",
+      "finding": "Board-dependent task card with label/date/priority dot; color-only priority needs text alternative.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B H J",
+        "limited": "C D G I",
+        "notApplicable": ""
+      },
+      "motion": "CSS hover border/shadow; drag overlay rotate/ring",
+      "dependencies": "react; lucide-react; local KanbanItem/cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-019",
+      "path": "ui-library/dashboards/kanbans/professional-karban-shadcn-ui/instructions.md",
+      "name": "TaskColumn",
+      "finding": "Board-dependent muted rounded task column with count and labeled drag handle; hover-only handle needs keyboard/touch review.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B H J",
+        "limited": "C D G I",
+        "notApplicable": ""
+      },
+      "motion": "Inherited drag transforms; hover handle opacity",
+      "dependencies": "react; lucide-react; local button/badge/kanban",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-020",
+      "path": "ui-library/dashboards/kanbans/professional-karban-shadcn-ui/instructions.md",
+      "name": "Kanban",
+      "finding": "Controlled DndContext root; pointer distance 10 and keyboard sensor; RAF-throttled same-column reorder, cross-column commit on drop; cancel clears active ID but does not restore already reordered data.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B H J",
+        "limited": "C D G I",
+        "notApplicable": ""
+      },
+      "motion": "dnd-kit interactive layout/drop transforms, not continuous; no explicit reduced-motion support",
+      "dependencies": "react; react-dom; @base-ui/react; @dnd-kit/core; @dnd-kit/sortable; @dnd-kit/utilities; local cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-021",
+      "path": "ui-library/dashboards/kanbans/professional-karban-shadcn-ui/instructions.md",
+      "name": "KanbanBoard",
+      "finding": "Sortable column grid with sm:grid-cols-3 default.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B H J",
+        "limited": "C D G I",
+        "notApplicable": ""
+      },
+      "motion": "dnd-kit interactive layout/drop transforms, not continuous; no explicit reduced-motion support",
+      "dependencies": "react; react-dom; @base-ui/react; @dnd-kit/core; @dnd-kit/sortable; @dnd-kit/utilities; local cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-022",
+      "path": "ui-library/dashboards/kanbans/professional-karban-shadcn-ui/instructions.md",
+      "name": "KanbanColumn",
+      "finding": "Sortable column/context; conditional hook after overlay return needs React hook review.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B H J",
+        "limited": "C D G I",
+        "notApplicable": ""
+      },
+      "motion": "dnd-kit interactive layout/drop transforms, not continuous; no explicit reduced-motion support",
+      "dependencies": "react; react-dom; @base-ui/react; @dnd-kit/core; @dnd-kit/sortable; @dnd-kit/utilities; local cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-023",
+      "path": "ui-library/dashboards/kanbans/professional-karban-shadcn-ui/instructions.md",
+      "name": "KanbanColumnHandle",
+      "finding": "Column attributes/listeners wrapper; opacity-zero until hover default.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B H J",
+        "limited": "C D G I",
+        "notApplicable": ""
+      },
+      "motion": "dnd-kit interactive layout/drop transforms, not continuous; no explicit reduced-motion support",
+      "dependencies": "react; react-dom; @base-ui/react; @dnd-kit/core; @dnd-kit/sortable; @dnd-kit/utilities; local cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-024",
+      "path": "ui-library/dashboards/kanbans/professional-karban-shadcn-ui/instructions.md",
+      "name": "KanbanItem",
+      "finding": "Sortable item/context; conditional hook after overlay return needs React hook review.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B H J",
+        "limited": "C D G I",
+        "notApplicable": ""
+      },
+      "motion": "dnd-kit interactive layout/drop transforms, not continuous; no explicit reduced-motion support",
+      "dependencies": "react; react-dom; @base-ui/react; @dnd-kit/core; @dnd-kit/sortable; @dnd-kit/utilities; local cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-025",
+      "path": "ui-library/dashboards/kanbans/professional-karban-shadcn-ui/instructions.md",
+      "name": "KanbanItemHandle",
+      "finding": "Item listener wrapper; requires KanbanItem context.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B H J",
+        "limited": "C D G I",
+        "notApplicable": ""
+      },
+      "motion": "dnd-kit interactive layout/drop transforms, not continuous; no explicit reduced-motion support",
+      "dependencies": "react; react-dom; @base-ui/react; @dnd-kit/core; @dnd-kit/sortable; @dnd-kit/utilities; local cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-026",
+      "path": "ui-library/dashboards/kanbans/professional-karban-shadcn-ui/instructions.md",
+      "name": "KanbanColumnContent",
+      "finding": "Vertical sortable list; assumes columns[value] exists.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B H J",
+        "limited": "C D G I",
+        "notApplicable": ""
+      },
+      "motion": "dnd-kit interactive layout/drop transforms, not continuous; no explicit reduced-motion support",
+      "dependencies": "react; react-dom; @base-ui/react; @dnd-kit/core; @dnd-kit/sortable; @dnd-kit/utilities; local cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-027",
+      "path": "ui-library/dashboards/kanbans/professional-karban-shadcn-ui/instructions.md",
+      "name": "KanbanOverlay",
+      "finding": "Body portal created after layout effect; item/column render callback and drop opacity effect.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B H J",
+        "limited": "C D G I",
+        "notApplicable": ""
+      },
+      "motion": "dnd-kit interactive layout/drop transforms, not continuous; no explicit reduced-motion support",
+      "dependencies": "react; react-dom; @base-ui/react; @dnd-kit/core; @dnd-kit/sortable; @dnd-kit/utilities; local cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-028",
+      "path": "ui-library/dashboards/kanbans/simple-kanban-shadcn-ui/instructions.md",
+      "name": "NavigationMenuDemo",
+      "finding": "Separate neutral two-link dropdown; next/link placeholders; not a kanban.",
+      "domains": {
+        "primary": "H",
+        "secondary": "A B E F G I J",
+        "limited": "C D",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "next; local navigation-menu",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-029",
+      "path": "ui-library/dashboards/kanbans/simple-kanban-shadcn-ui/instructions.md",
+      "name": "KanbanDemoOutline",
+      "finding": "Three-column initiative pipeline with 16rem minimum columns, local state, horizontal overflow; no backend.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B H J",
+        "limited": "C D G I",
+        "notApplicable": ""
+      },
+      "motion": "Card hover lift, overlay rotation; primitive drag behavior must match professional bundle",
+      "dependencies": "react; lucide-react; local avatar/badge/button/card/progress/separator/kanban/cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-030",
+      "path": "ui-library/dashboards/kanbans/simple-kanban-shadcn-ui/instructions.md",
+      "name": "InitiativeCard",
+      "finding": "Board-dependent initiative card with avatar, percentage/progress, text health badge and deadline.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B H J",
+        "limited": "C D G I",
+        "notApplicable": ""
+      },
+      "motion": "Card hover lift, overlay rotation; primitive drag behavior must match professional bundle",
+      "dependencies": "react; lucide-react; local avatar/badge/button/card/progress/separator/kanban/cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-031",
+      "path": "ui-library/dashboards/kanbans/simple-kanban-shadcn-ui/instructions.md",
+      "name": "PipelineColumn",
+      "finding": "Board-dependent stage header, count and always-visible labeled drag handle.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B H J",
+        "limited": "C D G I",
+        "notApplicable": ""
+      },
+      "motion": "Card hover lift, overlay rotation; primitive drag behavior must match professional bundle",
+      "dependencies": "react; lucide-react; local avatar/badge/button/card/progress/separator/kanban/cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-032",
+      "path": "ui-library/forms/drawer-signin-shadcn-ui/instructions.md",
+      "name": "DrawerWithSides",
+      "finding": "Neutral contact-entry drawer: name/email/address/description despite Sign In title; no password, form element, validation or submit handler; email lacks email type.",
+      "domains": {
+        "primary": "A F",
+        "secondary": "D E H I J",
+        "limited": "B C G",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "react; local button/drawer/input/label/textarea",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-033",
+      "path": "ui-library/forms/login-card-form-shadcn-ui/instructions.md",
+      "name": "CardDemo",
+      "finding": "Low-intensity max-w-md login card, labels and email/password inputs; submit button outside form, no login/OAuth handlers; placeholder links.",
+      "domains": {
+        "primary": "H",
+        "secondary": "A B F I J",
+        "limited": "C D E G",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "react; local button/card/input/label",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-034",
+      "path": "ui-library/forms/sign-in-form-shadcn-ui/instructions.md",
+      "name": "DialogSignUpDemo",
+      "finding": "Green-tinted medium-intensity signup dialog; two-column names, email/password, prechecked terms; nested forms, static IDs, no auth/OAuth, placeholder policies.",
+      "domains": {
+        "primary": "H",
+        "secondary": "A B I J",
+        "limited": "C D E F G",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "react useId; local button/checkbox/dialog/input/label",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-035",
+      "path": "ui-library/forms/signup-form-shadcn-ui/instructions.md",
+      "name": "DialogSignUpDemo",
+      "finding": "Green-tinted medium-intensity signup dialog; two-column names, email/password, prechecked terms; nested forms, static IDs, no auth/OAuth, placeholder policies.",
+      "domains": {
+        "primary": "H",
+        "secondary": "A B I J",
+        "limited": "C D E F G",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "react useId; local button/checkbox/dialog/input/label",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-036",
+      "path": "ui-library/forms/sign-in-form-shadcn-ui/instructions.md",
+      "name": "DialogSignInDemo",
+      "finding": "Sky-tinted login dialog; nested forms and inactive social/login buttons; same design as COMP-003, separate bundle occurrence.",
+      "domains": {
+        "primary": "H",
+        "secondary": "A B F I J",
+        "limited": "C D E G",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "lucide-react; local button/dialog/input/label",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-037",
+      "path": "ui-library/forms/signup-form-accernity-ui/instructions.md",
+      "name": "SignupFormDemo",
+      "finding": "Neutral rounded signup panel with responsive name row; submit only logs. Demo asks for third-party password with invalid type twitterpassword: remove that field in application copy; social buttons submit same form.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B",
+        "limited": "A C D E F G I J",
+        "notApplicable": ""
+      },
+      "motion": "CSS hover bottom gradients, no reduced-motion branch",
+      "dependencies": "react; @tabler/icons-react; local input/label/cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-038",
+      "path": "ui-library/forms/signup-form-accernity-ui/instructions.md",
+      "name": "BottomGradient",
+      "finding": "Reusable cyan/indigo button underline decoration; absolute spans depend on relative group/btn parent.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B I J",
+        "limited": "",
+        "notApplicable": "A C D E F G"
+      },
+      "motion": "CSS 500ms opacity hover fade; no continuous animation",
+      "dependencies": "react; Tailwind",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-039",
+      "path": "ui-library/forms/signup-form-accernity-ui/instructions.md",
+      "name": "LabelInputContainer",
+      "finding": "Layout helper: full-width flex column with space-y-2; cn merges caller classes.",
+      "domains": {
+        "primary": "",
+        "secondary": "A B C D E F G H I J",
+        "limited": "",
+        "notApplicable": ""
+      },
+      "motion": "None",
+      "dependencies": "react; local cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-040",
+      "path": "ui-library/grids/chroma-grids-react-bits/instructions.md",
+      "name": "ChromaGrid",
+      "finding": "Image-led responsive auto-fill grid; grayscale-to-color masked spotlight, optional frosted frame, links with focus outlines; empty items falls back to demos. Avoid for color-critical product comparisons.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "B",
+        "notApplicable": "A C D E F G"
+      },
+      "motion": "Native RAF damped pointer spotlight stops when settled; pointerdown supported; reduced-motion snaps RAF interpolation but CSS fades remain; masks/duplicate image layers need performance testing",
+      "dependencies": "react",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-041",
+      "path": "ui-library/landing/faqs/faq-shadcn-ui/instructions.md",
+      "name": "CollapsibleShowMoreDemo",
+      "finding": "Low-intensity two independently controlled FAQ answers, first open; Show/Hide links; replace sample cancellation policy.",
+      "domains": {
+        "primary": "I H",
+        "secondary": "A B E F J",
+        "limited": "C D G",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "react; local collapsible",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-042",
+      "path": "ui-library/landing/footer-components/github-globe-accernity-ui/instructions.md",
+      "name": "GlobeDemo",
+      "finding": "Prominent global-reach marketing section, responsive large stage and heading; World implementation absent; no real geographic analytics.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B I",
+        "limited": "A E F G J",
+        "notApplicable": "C D"
+      },
+      "motion": "motion/react heading entrance 1s; World config requests auto-rotation/arcs but engine and reduced motion unverified",
+      "dependencies": "react; motion; next; missing ../ui/globe",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-043",
+      "path": "ui-library/landing/heros/cloud-shader-accernity-ui/instructions.md",
+      "name": "CloudShaderHeroDemo",
+      "finding": "Prominent white-on-background conversion hero with navigation, CTA pair and glass-framed fintech screenshot; CloudShader absent; mobile nav hidden without menu; href placeholders.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B C I",
+        "limited": "A E F J",
+        "notApplicable": "D G"
+      },
+      "motion": "CSS hover CTA lift/color; background implementation unavailable",
+      "dependencies": "react; missing cloud-shader",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-044",
+      "path": "ui-library/landing/heros/wavy-background-accernity-ui/instructions.md",
+      "name": "WavyBackgroundDemo",
+      "finding": "Responsive centered white hero text passed to absent WavyBackground; headline uses p not heading; actual background intensity cannot be verified.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B",
+        "limited": "I J",
+        "notApplicable": "A C D E F G"
+      },
+      "motion": "Background motion not inspectable; wrapper contains no animation implementation",
+      "dependencies": "react; missing ../ui/wavy-background",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-045",
+      "path": "ui-library/landing/testimonials/infinite-moving-cards-accernity-ui/instructions.md",
+      "name": "InfiniteMovingCardsDemo",
+      "finding": "Fixed 40rem testimonial stage; passes literary quotes as cards, not real customer endorsements; card implementation absent.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "Requests right/slow motion via props; marquee engine and pause/reduced-motion behavior unverified",
+      "dependencies": "react; missing ../ui/infinite-moving-cards",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-046",
+      "path": "ui-library/navigation/navbars/navbar-menu/instructions.md",
+      "name": "NavigationMenuDemo",
+      "finding": "Neutral two-link descriptive dropdown with next/link placeholders, fixed w-80 flyout; duplicate design of simple-kanban navigation.",
+      "domains": {
+        "primary": "H",
+        "secondary": "A B E F G I J",
+        "limited": "C D",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "next; local navigation-menu",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-047",
+      "path": "ui-library/navigation/navbars/simple-nav-bar-shadcn-ui/instructions.md",
+      "name": "MenuBarMixedDemo",
+      "finding": "Compact application/social menubar; notification checkboxes and feed radio update local state; remaining commands and displayed shortcuts unwired.",
+      "domains": {
+        "primary": "F H",
+        "secondary": "A B E J",
+        "limited": "C D G I",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "react; local menubar",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-048",
+      "path": "ui-library/navigation/sidebars/sidebar-accernity-ui/instructions.md",
+      "name": "SidebarDemo",
+      "finding": "Neutral application shell, responsive column-to-row, 60vh demo height; controlled open state, placeholder links; sidebar primitive absent.",
+      "domains": {
+        "primary": "A E F",
+        "secondary": "B C D G H I J",
+        "limited": "",
+        "notApplicable": ""
+      },
+      "motion": "Logo fade and skeleton pulse verified; actual sidebar transition unavailable",
+      "dependencies": "react; motion; @tabler/icons-react; local sidebar/cn",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-049",
+      "path": "ui-library/navigation/sidebars/sidebar-accernity-ui/instructions.md",
+      "name": "Logo",
+      "finding": "Brand link with geometric mark and text; href placeholder.",
+      "domains": {
+        "primary": "H",
+        "secondary": "A B E F I J",
+        "limited": "C D G",
+        "notApplicable": ""
+      },
+      "motion": "motion/react opacity entrance",
+      "dependencies": "react; motion",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-050",
+      "path": "ui-library/navigation/sidebars/sidebar-accernity-ui/instructions.md",
+      "name": "LogoIcon",
+      "finding": "Icon-only brand link; lacks accessible name; href placeholder.",
+      "domains": {
+        "primary": "H",
+        "secondary": "A B E F I J",
+        "limited": "C D G",
+        "notApplicable": ""
+      },
+      "motion": "None",
+      "dependencies": "react",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-051",
+      "path": "ui-library/navigation/sidebars/sidebar-accernity-ui/instructions.md",
+      "name": "Dashboard",
+      "finding": "Placeholder dashboard skeleton with four top tiles and two panels; no actual metrics.",
+      "domains": {
+        "primary": "",
+        "secondary": "A B C D E F G H I J",
+        "limited": "",
+        "notApplicable": ""
+      },
+      "motion": "Continuous Tailwind animate-pulse; no reduced-motion override",
+      "dependencies": "react; Tailwind",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-052",
+      "path": "ui-library/navigation/tabs/icon-tab-shadcn-ui/instructions.md",
+      "name": "TabsWithIconDemo",
+      "finding": "Low-intensity in-page content switching, max-w-md. Three label+icon tabs; responsive trigger padding.",
+      "domains": {
+        "primary": "H J",
+        "secondary": "A B E F G I",
+        "limited": "C D",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "lucide-react; local tabs",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-053",
+      "path": "ui-library/navigation/tabs/notification-with-tab-shadcn-ui/instructions.md",
+      "name": "TabsWithBadgeDemo",
+      "finding": "Low-intensity in-page content switching, max-w-md. Three tabs with static counts; not a live notification service.",
+      "domains": {
+        "primary": "H J",
+        "secondary": "A B E F G I",
+        "limited": "C D",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "local tabs/badge",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-054",
+      "path": "ui-library/navigation/tabs/simple-tab-shadcn-ui/instructions.md",
+      "name": "TabsOutlinedDemo",
+      "finding": "Low-intensity in-page content switching, max-w-md. Bordered tab group with primary-filled active state; verify data-active primitive convention.",
+      "domains": {
+        "primary": "H J",
+        "secondary": "A B E F G I",
+        "limited": "C D",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "local tabs",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-055",
+      "path": "ui-library/reusable/buttons/go-to-settings-shadcn-ui/instructions.md",
+      "name": "ButtonGhostDemo",
+      "finding": "Ghost settings button; no action handler.",
+      "domains": {
+        "primary": "F H",
+        "secondary": "A B C D E G I J",
+        "limited": "",
+        "notApplicable": ""
+      },
+      "motion": "200ms hover arrow translate; no reduced-motion override",
+      "dependencies": "lucide-react; local button",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-056",
+      "path": "ui-library/reusable/buttons/notifications-button-shadcn-ui/instructions.md",
+      "name": "ButtonNotificationsBadgeDemo",
+      "finding": "Outline notification button with static red badge 8; no action handler.",
+      "domains": {
+        "primary": "F H",
+        "secondary": "A B C D E G I J",
+        "limited": "",
+        "notApplicable": ""
+      },
+      "motion": "No local animation",
+      "dependencies": "lucide-react; local button",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-057",
+      "path": "ui-library/reusable/buttons/shadcn-ui-buttons/instructions.md",
+      "name": "ButtonActionsDemo",
+      "finding": "Wrapping Cancel/Save pair; no action handlers.",
+      "domains": {
+        "primary": "F H",
+        "secondary": "A B C D E G I J",
+        "limited": "",
+        "notApplicable": ""
+      },
+      "motion": "No local animation",
+      "dependencies": "; local button",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-058",
+      "path": "ui-library/reusable/calender/book-your-appointment-shadcn-ui/instructions.md",
+      "name": "CalendarAppointmentBookingDemo",
+      "finding": "Low-intensity responsive date/time split panel, 37 quarter-hour slots. Fixed June 2025 availability; displays booked immediately from selection; Continue unwired. No persistence or timezone/availability service.",
+      "domains": {
+        "primary": "D",
+        "secondary": "A H J",
+        "limited": "B C E F G I",
+        "notApplicable": ""
+      },
+      "motion": "No local animation; scroll-area/calendar behavior inherited",
+      "dependencies": "react; lucide-react; local button/calendar/card/scroll-area",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-059",
+      "path": "ui-library/reusable/calender/normal-usage-calender-shadcn-ui/instructions.md",
+      "name": "CalendarAppointmentBookingDemo",
+      "finding": "Low-intensity responsive date/time split panel, 37 quarter-hour slots. Fixed June 2025 availability; displays booked immediately from selection; Continue unwired. No persistence or timezone/availability service.",
+      "domains": {
+        "primary": "D",
+        "secondary": "A H J",
+        "limited": "B C E F G I",
+        "notApplicable": ""
+      },
+      "motion": "No local animation; scroll-area/calendar behavior inherited",
+      "dependencies": "react; lucide-react; local button/calendar/card/scroll-area",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-060",
+      "path": "ui-library/reusable/calender/normal-usage-calender-shadcn-ui/instructions.md",
+      "name": "CalendarWeekNumberDemo",
+      "finding": "Bordered single-date picker with week numbers, local date state; no scheduling/backend.",
+      "domains": {
+        "primary": "E F",
+        "secondary": "A C D G H J",
+        "limited": "B I",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "react; local calendar",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-061",
+      "path": "ui-library/reusable/cards/apple-cards-carousel-accernity-ui/instructions.md",
+      "name": "AppleCardsCarouselDemo",
+      "finding": "Responsive editorial heading and supplied image-card array; underlying Carousel/Card missing; no verified scrolling/dialog mechanism.",
+      "domains": {
+        "primary": "H I",
+        "secondary": "B J",
+        "limited": "",
+        "notApplicable": "A C D E F G"
+      },
+      "motion": "Motion cannot be verified from wrapper",
+      "dependencies": "react; missing apple-cards-carousel",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-062",
+      "path": "ui-library/reusable/cards/apple-cards-carousel-accernity-ui/instructions.md",
+      "name": "DummyContent",
+      "finding": "Three repeated rounded editorial image/text panels; placeholder detail content for carousel, not production copy.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "",
+        "notApplicable": "A B C D E F G"
+      },
+      "motion": "None",
+      "dependencies": "react",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-063",
+      "path": "ui-library/reusable/cards/decent-plain-card-shadcn-ui/instructions.md",
+      "name": "CardTopImageDemo",
+      "finding": "Image-top card with title, description and two inactive CTAs; mobile-stacked actions; generic image alt needs replacement.",
+      "domains": {
+        "primary": "H I J",
+        "secondary": "",
+        "limited": "A B",
+        "notApplicable": "C D E F G"
+      },
+      "motion": "No local animation",
+      "dependencies": "local button/card",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-064",
+      "path": "ui-library/reusable/cards/focus-cards-accernity-ui/instructions.md",
+      "name": "FocusCardsDemo",
+      "finding": "Image/title array passed to missing FocusCards; actual blur/hover behavior not verified.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "",
+        "notApplicable": "A B C D E F G"
+      },
+      "motion": "Unknown; primitive absent",
+      "dependencies": "missing focus-cards",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-065",
+      "path": "ui-library/reusable/cards/wobble-cards-accernity-ui/instructions.md",
+      "name": "WobbleCardDemo",
+      "finding": "Prominent asymmetric responsive feature grid, pink/blue panels; absent WobbleCard and /linear.webp asset; fabricated product stats must be replaced.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B",
+        "limited": "I J",
+        "notApplicable": "A C D E F G"
+      },
+      "motion": "Wobble behavior unverified; underlying implementation absent",
+      "dependencies": "react; missing wobble-card",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-066",
+      "path": "ui-library/reusable/dialog-boxes-or-menu-shadcn-ui/instructions.md",
+      "name": "DialogFullScreenDemo",
+      "finding": "Neutral near-fullscreen product-details dialog, scroll body and Back close; Read More inactive; vh sizing needs mobile browser testing.",
+      "domains": {
+        "primary": "I",
+        "secondary": "F H J",
+        "limited": "A B C D E G",
+        "notApplicable": ""
+      },
+      "motion": "No explicit local motion; primitive behavior requires verification",
+      "dependencies": "lucide-react; local button/dialog/scroll-area",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-067",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "TailwindcssButtons",
+      "finding": "Responsive button showcase with click-to-copy and success/error toast; needs secure Clipboard API; ButtonsCard missing.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B",
+        "limited": "",
+        "notApplicable": "A C D E F G I J"
+      },
+      "motion": "Mixed per-button CSS motion; no reduced-motion override",
+      "dependencies": "react; react-element-to-jsx-string; sonner; missing ButtonsCard",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-068",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Sketch",
+      "finding": "Black outlined white button; offset hover shadow; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover shadow; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-069",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Simple",
+      "finding": "Neutral gray rounded button; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover rise/shadow; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-070",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Invert",
+      "finding": "Teal filled to white bordered button; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover color transition; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-071",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Tailwindcss Connect",
+      "finding": "Dark pill with radial highlight and accent underline; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover opacity; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-072",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Gradient",
+      "finding": "Blue gradient pill with focus ring; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover shadow; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-073",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Unapologetic",
+      "finding": "Square outlined button with offset yellow layer; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover layer shift; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-074",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Lit up borders",
+      "finding": "Purple gradient rim with black inset; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover fill transparency; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-075",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Border Magic",
+      "finding": "Dark pill with conic border; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "continuous 2s CSS spin; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-076",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Brutal",
+      "finding": "Uppercase block with stepped hard shadow; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "No explicit motion; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-077",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Favourite",
+      "finding": "Black rounded button; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover shade/shadow; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-078",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Outline",
+      "finding": "White outlined rounded button; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover fill; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-079",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Shimmer",
+      "finding": "Dark gradient button with focus ring; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "continuous 2s background-position; legacy Tailwind config supplied; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-080",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Next.js Blue",
+      "finding": "Blue soft-shadow button; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover shadow/color; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-081",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Next.js White",
+      "finding": "White soft-shadow button; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover shadow; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-082",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Spotify",
+      "finding": "Green uppercase pill; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover scale/color; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-083",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Backdrop Blur",
+      "finding": "Translucent outlined button; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover shadow; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-084",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Playlist",
+      "finding": "Inset outlined uppercase pill; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover inversion; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-085",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Figma",
+      "finding": "Bold black rounded button; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover rise; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-086",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Figma Outline",
+      "finding": "Bold outlined button; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover rise; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-087",
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "name": "Top Gradient",
+      "finding": "Dark pill with thin top gradient accent; JSX variant in buttons array, no business handler; do not inherit showcase copy/toast dependencies when extracting only button.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B E F",
+        "notApplicable": "C D G"
+      },
+      "motion": "hover shadow; no explicit reduced-motion handling",
+      "dependencies": "React JSX; Tailwind CSS",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-088",
+      "path": "ui-library/landing/heros/scroll-explained-react-bits/instructions.md",
+      "name": "ScrollExpand",
+      "finding": "Prominent sticky image/video storytelling stage; clip-path expands and media unzooms, title fades/lifts, content enters. Window/internal scrolling; parent height needed. Hidden opacity content may remain focusable; video loops without controls.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "B",
+        "notApplicable": "A C D E F G"
+      },
+      "motion": "Native RAF scroll interpolation stops when settled; reduced motion removes smoothing but not scroll transforms or video autoplay",
+      "dependencies": "react",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-089",
+      "path": "ui-library/navigation/sidebars/line-sidebar-react-bits/instructions.md",
+      "name": "LineSidebar",
+      "finding": "Experimental editorial indexed navigation with marker lines and proximity-driven shifting labels. Clickable li lacks keyboard focus/activation; no actual links unless callback supplied.",
+      "domains": {
+        "primary": "H",
+        "secondary": "",
+        "limited": "B J",
+        "notApplicable": "A C D E F G I"
+      },
+      "motion": "Native RAF pointer proximity and selected state, stops settled; no reduced-motion handling; touch click works but hover affordance differs",
+      "dependencies": "react",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-090",
+      "path": "ui-library/navigation/menus/branched-menu-react-bits/instructions.md",
+      "name": "BranchedMenu",
+      "finding": "Compact technical hierarchical navigation with SVG branch rails and selection callbacks; buttons/aria-expanded/hidden child tabIndex supplied, but outline-none lacks visible focus. Documentation says undefined; source verifies name.",
+      "domains": {
+        "primary": "F H J",
+        "secondary": "A B E G",
+        "limited": "C D I",
+        "notApplicable": ""
+      },
+      "motion": "CSS fold grid rows, SVG stroke drawing and marker glide; reduced-motion removes fold/draw/position transitions but leaves fades/colors",
+      "dependencies": "react; @hugeicons/react; @hugeicons/core-free-icons",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-091",
+      "path": "ui-library/reusable/galleries/gradual-blur-react-bits/instructions.md",
+      "name": "GradualBlur",
+      "finding": "Decorative layered edge backdrop blur, optional scroll-edge auto-hide and pointer intensity; aria-hidden and pointer-events-none. Up to 16 layers and z-index 1000 need performance/overlay review; author comment Ansh, github.com/ansh-dhanani.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B I J",
+        "limited": "A E F G",
+        "notApplicable": "C D"
+      },
+      "motion": "CSS backdrop-filter/opacity; optional scroll and pointer triggers; no continuous loop; no reduced-motion override",
+      "dependencies": "react",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-092",
+      "path": "ui-library/reusable/galleries/accordian-gallery-react-bits/instructions.md",
+      "name": "AccordionGallery",
+      "finding": "Prominent photographic accordion; hover/focus/tap expansion, second click follows link; arrow keys change active but not focus. Below 520px switches to column; orientation-based JS sizing still needs mobile review.",
+      "domains": {
+        "primary": "H I",
+        "secondary": "J",
+        "limited": "",
+        "notApplicable": "A B C D E F G"
+      },
+      "motion": "GSAP flex-grow, 3D rotation, image drift and staggered caption; reduced-motion sets duration/stagger zero; no scroll trigger or continuous loop",
+      "dependencies": "react; gsap",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-093",
+      "path": "ui-library/reusable/cards/bounce-cards-react-bits/instructions.md",
+      "name": "BounceCards",
+      "finding": "Playful overlapping image fan with optional keyboard/click callback; fixed container/card sizes need responsive adaptation. Native spring simulation, not GSAP.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "B",
+        "notApplicable": "A C D E F G"
+      },
+      "motion": "Native RAF staggered spring entrance, hover fan-out and press impulse; stops settled; reduced motion skips entrance scaling but hover movement remains",
+      "dependencies": "react",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-094",
+      "path": "ui-library/reusable/buttons/specular-button-react-bits/instructions.md",
+      "name": "SpecularButton",
+      "finding": "Premium glass-tinted native button with WebGL2 luminous edge; focus outline and disabled support. Canvas failure retains label/button; per-instance WebGL and global pointer listeners costly in bulk.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B I",
+        "limited": "J",
+        "notApplicable": "A C D E F G"
+      },
+      "motion": "Native WebGL2/RAF pointer proximity/press shine; optional idle orbit; intersection gating. Reduced motion disables orbit only; smoothing/press CSS remain",
+      "dependencies": "react",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-095",
+      "path": "ui-library/reusable/cards/profile-card-react-bits/instructions.md",
+      "name": "ProfileCard",
+      "finding": "Prominent holographic portrait card, native contact button, lazy images, 340px max-w-full layout; status is caller text, not live presence. Optional mobile orientation permission after click; expensive blend/mask layers.",
+      "domains": {
+        "primary": "H",
+        "secondary": "I J",
+        "limited": "A B",
+        "notApplicable": "C D E F G"
+      },
+      "motion": "Native RAF spring tilt/parallax and intro; pointer/touch and optional deviceorientation. Reduced motion disables intro/tilt/parallax but retains moving light/foil; stops settled",
+      "dependencies": "react; @hugeicons/react; @hugeicons/core-free-icons",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-096",
+      "path": "ui-library/reusable/cards/pixel-cards-react-bits/instructions.md",
+      "name": "PixelCard",
+      "finding": "Prominent canvas pixel decorative card with children above canvas; fixed 300x400 default needs adaptation. Hover/focus, click-toggle or always modes; no business action. Focus default off for pink preset.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B I J",
+        "limited": "",
+        "notApplicable": "A C D E F G"
+      },
+      "motion": "Canvas 2D RAF reveal/twinkle/ripple; first-intersection intro and visibility gating. Reduced motion suppresses intro/twinkle/ripple and snaps reveal, but active render loop can continue",
+      "dependencies": "react",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-097",
+      "path": "ui-library/landing/heros/threads-react-bits/instructions.md",
+      "name": "Threads",
+      "finding": "Instanced WebGL2 translucent thread waves; decorative canvas, configurable color/angle/parting, container-sized with 1920 render cap. Native RAF continuous unless paused/reduced; pointer steering and parting still settle under reduced motion. Intersection/visibility gating and cleanup; blank without WebGL2. Pair with plain copy, never a data chart.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B",
+        "limited": "I J",
+        "notApplicable": "A C D E F G"
+      },
+      "motion": "Continuous background waves and pointer response; reduced motion freezes time but preserves pointer easing",
+      "dependencies": "react",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-098",
+      "path": "ui-library/reusable/buttons/star-border-react-bits/instructions.md",
+      "name": "StarBorder",
+      "finding": "Polymorphic native-button default with canvas perimeter stars, trails/glow, hover/focus lap and press pulse. Dark/light palettes; keyboard focus outline; decorative canvas; native RAF/IntersectionObserver, no motion package. Reduced motion stops cruising/lap/dust but press pulse and fades remain. Limit to one conversion action; multiple canvases cost.",
+      "domains": {
+        "primary": "H",
+        "secondary": "B I",
+        "limited": "J",
+        "notApplicable": "A C D E F G"
+      },
+      "motion": "Continuous border orbit, hover/focus lap, click pulse; partial reduced motion",
+      "dependencies": "react",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-099",
+      "path": "ui-library/reusable/cards/titled-card-react-bits/instructions.md",
+      "name": "TiltedCard",
+      "finding": "Photographic figure with spring tilt/glare/shadow, optional flip back and cursor caption. Native RAF with intersection gating; touch/gyroscope permission on tap, keyboard Enter/Space and focus rim. Reduced motion skips intro/floating but keeps 30% tilt, lift and animated flip. Hidden back needs descendant focus management; front not aria-hidden on flip. Defaults 300px, max-full. Product feature/portfolio accent.",
+      "domains": {
+        "primary": "H I",
+        "secondary": "J",
+        "limited": "B",
+        "notApplicable": "A C D E F G"
+      },
+      "motion": "3D pointer/gyroscope tilt, entrance, optional idle float, click flip; partial reduced motion",
+      "dependencies": "react",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-100",
+      "path": "ui-library/reusable/cards/titled-card-react-bits/instructions.md",
+      "name": "TiltedCardLayer",
+      "finding": "Absolute inset content layer using parent's CSS tilt/depth variables. No standalone card or own animation engine; requires TiltedCard for parallax. Keep text short; no intrinsic sizing.",
+      "domains": {
+        "primary": "H I",
+        "secondary": "J",
+        "limited": "B",
+        "notApplicable": "A C D E F G"
+      },
+      "motion": "Parent-driven pointer parallax",
+      "dependencies": "react",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-101",
+      "path": "ui-library/reusable/lists/animated-list-react-bits/instructions.md",
+      "name": "AnimatedList",
+      "finding": "Frosted selectable file/resource list with icon/title/meta, scroll edge masks, listbox/option roles and active descendant, arrows/Home/End/Enter/Space. Native RAF selection spring + CSS reveal, no motion package. Reduced uses fade (4px displacement remains), snaps selection but keyboard scroll remains smooth. Needs accessible listbox name; no virtualization; no persistence; truncate long labels; use plain frame/animation none for work apps.",
+      "domains": {
+        "primary": "H",
+        "secondary": "A B E F J",
+        "limited": "C D I G",
+        "notApplicable": ""
+      },
+      "motion": "Scroll entrance/pop/slide/fade and selection spring; partial reduced motion",
+      "dependencies": "react @hugeicons/react @hugeicons/core-free-icons",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md; suggested destinations are not physical files",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-102",
+      "path": "ui-library/grids/magic-bento-react-bits/instructions.md",
+      "name": "MagicBento",
+      "finding": "Responsive feature bento grid with built-in analytics, dashboard, collaboration, automation, integration and security visuals; cards can be links or keyboard-operable buttons.",
+      "domains": { "primary": "B E H", "secondary": "A F G", "limited": "C I J", "notApplicable": "D" },
+      "motion": "Pointer spotlight/border glow, optional particles, tilt, magnetism, click ripple and scroll-gated intro; honors prefers-reduced-motion and disableAnimations.",
+      "dependencies": "react; @hugeicons/react; @hugeicons/core-free-icons",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-103",
+      "path": "ui-library/landing/heros/hyperspeed-react-bits/instructions.md",
+      "name": "Hyperspeed",
+      "finding": "Full-canvas procedural night-road and light-trail WebGL hero with pointer steering and press-and-hold boost.",
+      "domains": { "primary": "B H", "secondary": "", "limited": "A E G I J", "notApplicable": "C D F" },
+      "motion": "Continuous Three.js render; IntersectionObserver pauses offscreen and reduced motion slows pace rather than disabling. Prominent/experimental.",
+      "dependencies": "react; three",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-104",
+      "path": "ui-library/landing/heros/splash-cursor/instructions.md",
+      "name": "SplashCursor",
+      "finding": "Fixed or contained WebGL2 fluid-ink cursor overlay reacting to pointer, touch and optional click splashes.",
+      "domains": { "primary": "H", "secondary": "B", "limited": "I J", "notApplicable": "A C D E F G" },
+      "motion": "Continuous GPU fluid simulation while ink is active; reduced motion suppresses intro but user input still animates. Experimental and potentially expensive.",
+      "dependencies": "react; browser WebGL2",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-105",
+      "path": "ui-library/navigation/menus/flowing-menu-react-bits/instructions.md",
+      "name": "FlowingMenu",
+      "finding": "Editorial full-height menu whose hover/focus/touch row reveals a liquid marquee band with optional images, metadata and active page state.",
+      "domains": { "primary": "H", "secondary": "B I J", "limited": "A C E F G", "notApplicable": "D" },
+      "motion": "Pointer-driven marquee and band spring; intro uses Web Animations API; honors prefers-reduced-motion. Prominent.",
+      "dependencies": "react; @hugeicons/react; @hugeicons/core-free-icons",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-106",
+      "path": "ui-library/navigation/navbars/pill-nav-react-bits/instructions.md",
+      "name": "PillNav",
+      "finding": "Compact responsive primary navigation with optional glass/solid surface, active dot or glide, and an accessible collapsed menu.",
+      "domains": { "primary": "H", "secondary": "A B C E F G I J", "limited": "D", "notApplicable": "" },
+      "motion": "CSS fill/label roll plus RAF glide and intro; reduced motion disables transition-heavy effects. Moderate.",
+      "dependencies": "react",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-107",
+      "path": "ui-library/reusable/galleries/circular-gallery-react-bits/instructions.md",
+      "name": "CircularGallery",
+      "finding": "WebGL2 curved, draggable image carousel with keyboard controls, screen-reader list, live announcement and open/close state.",
+      "domains": { "primary": "H I J", "secondary": "B", "limited": "A C D E F G", "notApplicable": "" },
+      "motion": "RAF card physics, optional auto-scroll, drag/wheel and open animation; reduced motion shortens/snap-transitions. Prominent/experimental.",
+      "dependencies": "react; browser WebGL2; optional remote font URL",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-108",
+      "path": "ui-library/reusable/galleries/flex-carousel-react-bits/instructions.md",
+      "name": "FlexCarousel",
+      "finding": "WebGL image carousel distorted through an invisible lens, with drag/wheel/keyboard selection, captions and optional focused-card expansion.",
+      "domains": { "primary": "H I", "secondary": "B J", "limited": "A C D E F G", "notApplicable": "" },
+      "motion": "Continuous OGL rendering only while active/visible; intro, optional autoplay and lens interaction stop or simplify under reduced motion. Experimental.",
+      "dependencies": "react; ogl",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md",
+      "status": "Local source inspected; runtime not tested"
+    },
+    {
+      "id": "COMP-109",
+      "path": "ui-library/reusable/galleries/Masonry-react-bits/instructions.md",
+      "name": "Masonry",
+      "finding": "Responsive image masonry grid with progressive reveal, hover treatments, optional mouse-only drag reorder, parallax and modal lightbox navigation.",
+      "domains": { "primary": "H I J", "secondary": "B G", "limited": "A C D E F", "notApplicable": "" },
+      "motion": "RAF springs/reveal/parallax plus Web Animations lightbox; reduced-motion branches exist. Moderate to prominent; disable drag/parallax for work surfaces.",
+      "dependencies": "react; react-dom; @hugeicons/react; @hugeicons/core-free-icons",
+      "license": "License requires verification",
+      "implementation": "Embedded in linked instructions.md",
+      "status": "Local source inspected; runtime not tested"
+    }
+  ],
+  "bundles": [
+    {
+      "path": "ui-library/charts/chart-assistant-ui/instructions.md",
+      "hash": "2C829DB76D77FF571B854A22F3271690267F5B361F1709DEB18F4253EDA923B6",
+      "lines": 49,
+      "status": "local instructions reviewed; referenced primitives not available locally"
+    },
+    {
+      "path": "ui-library/dashboards/data-showcase/data-table-shadcn-ui/instructions.md",
+      "hash": "EC000101E620287EC970F67F456BC1077D89B3A2870B48922DD94DF6280B9202",
+      "lines": 271,
+      "status": "local instructions reviewed; referenced primitives not available locally"
+    },
+    {
+      "path": "ui-library/dashboards/data-showcase/data-table-with-search-shadcn-ui/instructions.md",
+      "hash": "35E736413FED7572E6C4BFAB7F931AA05637CC479A283BF2512491A7AE86DFA3",
+      "lines": 591,
+      "status": "local instructions reviewed; referenced primitives not available locally"
+    },
+    {
+      "path": "ui-library/dashboards/data-tables/data-table-option-2-shadcn-ui/instructions.md",
+      "hash": "EEA109EC09DC426A73CA404C1EFD5E4B1553B11C5B4649364D828D9D019667A6",
+      "lines": 215,
+      "status": "local instructions reviewed; referenced primitives not available locally"
+    },
+    {
+      "path": "ui-library/dashboards/data-tables/simple-data-table-shadcn-ui/instructions.md",
+      "hash": "43D625B31100FAF3F78B747B4221C6BA47BA121AED24137FD9D6B70A7DEADF04",
+      "lines": 215,
+      "status": "local instructions reviewed; referenced primitives not available locally"
+    },
+    {
+      "path": "ui-library/dashboards/drawers/cart-drawer-shadcn-ui/instructions.md",
+      "hash": "7002636F636EB16A4D0E0D84E338E270A890EF0CA234777E9FE92394F30AE9DB",
+      "lines": 274,
+      "status": "local instructions reviewed; referenced primitives not available locally"
+    },
+    {
+      "path": "ui-library/dashboards/drawers/nooverlay-scrollable-content-drawer-shadcn-ui/instructions.md",
+      "hash": "D1579EF910FF935FC631ACE223CE67FE0B703A996D0C504FD9540D9FCE82C428",
+      "lines": 143,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/dashboards/drawers/profile-drawer-shadcn-ui/instructions.md",
+      "hash": "E9475DBC617C2102BCB6CEBD708E65090C1B46313E8DCF6ED2D905E012851A27",
+      "lines": 216,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/dashboards/drawers/scrollable-content-drawer-shadcn-ui/instructions.md",
+      "hash": "A28FE97DD388AFE357FAC9A556B9FD9416C11E82CB001D7A47020C777397ED53",
+      "lines": 141,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/dashboards/kanbans/professional-karban-shadcn-ui/instructions.md",
+      "hash": "54C0D1D93F002DDDE08CD2B38BF04F7C89F48C75E4F670D81BF59CB5DD264DB2",
+      "lines": 1332,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/dashboards/kanbans/simple-kanban-shadcn-ui/instructions.md",
+      "hash": "C78FBB3D787DC90AC211624232B0D95661182B87935289C83DA66196150C1C78",
+      "lines": 411,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/forms/drawer-signin-shadcn-ui/instructions.md",
+      "hash": "986209A593C1A620B55C6B12204CEDB72215CA036E87DB156F369366E4BD1B03",
+      "lines": 150,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/forms/login-card-form-shadcn-ui/instructions.md",
+      "hash": "8ABDCAA717220394FB3CFC549D4B11346DDB9B897C9A880443249402F5A50902",
+      "lines": 141,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/forms/sign-in-form-shadcn-ui/instructions.md",
+      "hash": "652DDD8794E4AE259A951B55A69A8D92F620EFCEED2270353639A943187CCCED",
+      "lines": 209,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/forms/signup-form-accernity-ui/instructions.md",
+      "hash": "6F98E1ACA9955436255A06E567DB5C0A9C94762D1E20303CCC8EAD463A79EEC6",
+      "lines": 128,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/forms/signup-form-shadcn-ui/instructions.md",
+      "hash": "C69790B0D2650EEA1BAA44A68F4BE9810424A3144776657A863ED856124BA282",
+      "lines": 213,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/grids/chroma-grids-react-bits/instructions.md",
+      "hash": "9E8BF566133E8022B3410B9658D4AF07400939477D821EDFCFEDBDF84095E971",
+      "lines": 541,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/grids/magic-bento-react-bits/instructions.md",
+      "hash": "3884FAE7F74668BF890CBBCA521616B0E2EC38BF7AEEC6C5ED719F9B0E5FC1ED",
+      "lines": 1715,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/landing/faqs/faq-shadcn-ui/instructions.md",
+      "hash": "AF3AFC51711A9C28C27E48AC448E947B79A967E87007EA742EF169085EBCDE0C",
+      "lines": 132,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/landing/footer-components/github-globe-accernity-ui/instructions.md",
+      "hash": "E9C6B159AFC1311AC0380CD5D4E5928501FF8D09D38E0AA4A20C74DBE348F4C5",
+      "lines": 432,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/landing/heros/cloud-shader-accernity-ui/instructions.md",
+      "hash": "F287E0D62DB18E1BC0732DADAAD4D5644888D7DB8D6D775E6CFD11686134654D",
+      "lines": 97,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/landing/heros/hyperspeed-react-bits/instructions.md",
+      "hash": "D41802AFE4A32A5952345CE48D63819D5FEDF1C76B4C6157DC10BF23EF3B8C33",
+      "lines": 1424,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/landing/heros/scroll-explained-react-bits/instructions.md",
+      "hash": "B4ACAF796F5715470C2081B9638FA21B11B61DA6954438E30D1311562E6709F1",
+      "lines": 382,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/landing/heros/splash-cursor/instructions.md",
+      "hash": "B20C4B54EDA2219C2FE4F7C222F2EC5517D461162A24A7844B3E3465FF8CFFB1",
+      "lines": 1351,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/landing/heros/threads-react-bits/instructions.md",
+      "hash": "68764C77A5FAE1F5F4D3A58528687304BF35A04DA0773CCFD7B67564A0D42D16",
+      "lines": 752,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/landing/heros/wavy-background-accernity-ui/instructions.md",
+      "hash": "4CA9BA8FD77D91EE9882539C4BCF481091B5A9001E2F868AEFE02EF78DC259EC",
+      "lines": 20,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/landing/testimonials/infinite-moving-cards-accernity-ui/instructions.md",
+      "hash": "A99D2AE42488EAE98D95F327C17421F8B0E52A4E4AA6B239DB6B089A275434EE",
+      "lines": 52,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/navigation/menus/branched-menu-react-bits/instructions.md",
+      "hash": "EDA95D76B540055FAEA188BAC20CF494BDA6D7A9C5F09D7AE1FF0AAC08B1CDA3",
+      "lines": 403,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/navigation/menus/flowing-menu-react-bits/instructions.md",
+      "hash": "11FE5F327F1BAEEFEC118DA739B76FCDCDF9BE4BFB58C9AEB449BAF7E01BC381",
+      "lines": 977,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/navigation/navbars/navbar-menu/instructions.md",
+      "hash": "AC47C3BDA19774A4A55F146C7AE2A544DB586AA5CCC6D679D09528D162AA4301",
+      "lines": 138,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/navigation/navbars/pill-nav-react-bits/instructions.md",
+      "hash": "E1DDB09FD5F079A2AB7179EF0432B31CA2754AE511C9F7F0BF8AA00503633BB9",
+      "lines": 1153,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/navigation/navbars/simple-nav-bar-shadcn-ui/instructions.md",
+      "hash": "9FBCB5299AD3D96761B6DE740C7ABCB7FFF24CABDC34596B1EEC0CEE5B8DCFE1",
+      "lines": 253,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/navigation/sidebars/line-sidebar-react-bits/instructions.md",
+      "hash": "320546A6F888A3A35492EF1D25B2FE0F93D9DA0CA9CBE650B2E02284E69D0BCD",
+      "lines": 316,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/navigation/sidebars/sidebar-accernity-ui/instructions.md",
+      "hash": "735E7111F5AEB872035AF19481575E53F932D47957500E7C2796B5554CBEE2CB",
+      "lines": 138,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/navigation/tabs/icon-tab-shadcn-ui/instructions.md",
+      "hash": "02DF72CBEFC5A083DF831856502B78703DA1CDFBE2B5388C732D3A01DA86705F",
+      "lines": 176,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/navigation/tabs/notification-with-tab-shadcn-ui/instructions.md",
+      "hash": "33D4F26259499CA1A92111116A9A86B5B76E461FDFDFB3942637C295C2EA0CFC",
+      "lines": 164,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/navigation/tabs/simple-tab-shadcn-ui/instructions.md",
+      "hash": "4F993C391941DCF70603E5CB489EAFC5086900445D6C2B28D964D13E36ACBBD4",
+      "lines": 162,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/buttons/go-to-settings-shadcn-ui/instructions.md",
+      "hash": "A80587DF40EBD1FE1CAE0394B1CA0F717B38BEA25ABC9A6FF32EB21C43570942",
+      "lines": 15,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/buttons/notifications-button-shadcn-ui/instructions.md",
+      "hash": "9E70F151FCAB7A81CACB04C32C64108B4B600338F1FE83B456745DD763BB65E1",
+      "lines": 19,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/buttons/shadcn-ui-buttons/instructions.md",
+      "hash": "A882B62B415ED2E0C700633C5F063217892E320B8E5D848FF27E4271AF3296CC",
+      "lines": 14,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/buttons/specular-button-react-bits/instructions.md",
+      "hash": "9C1A1935C2F011DA44CE44E83AEBCB6FB7A65E3496F3B9D60B58073429FE5AF4",
+      "lines": 678,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/buttons/star-border-react-bits/instructions.md",
+      "hash": "5C9F78E2B8C223D3B656735EB1079EA254903270A0789D7D34A9ADF8A99120AF",
+      "lines": 844,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/buttons/tailwind-css-buttons-accernity-ui/instructions.md",
+      "hash": "83CB2D262EFE4FBA548CDD9766A47CF48C9254F3EABC09DA1312451F8F0769E4",
+      "lines": 297,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/calender/book-your-appointment-shadcn-ui/instructions.md",
+      "hash": "E430DD1EA1C4792D4EAA75FC8F56561D4CF5B57CC476EB2AE3F585F1948CBAF4",
+      "lines": 245,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/calender/normal-usage-calender-shadcn-ui/instructions.md",
+      "hash": "6070D4696D0E8AAB62D3BD0EB4E55A28898E7AA359B6016C1EC990E3045A6022",
+      "lines": 168,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/cards/apple-cards-carousel-accernity-ui/instructions.md",
+      "hash": "66C9BD0EEA908F923B3860FECA942AE1983C86BB33873B4EA0E12745BA994166",
+      "lines": 93,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/cards/bounce-cards-react-bits/instructions.md",
+      "hash": "9577A2E7A5D47CEA66AD3E86F7EEA2109BBE05E3DE8CDDAF2364AB19A0676D55",
+      "lines": 512,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/cards/decent-plain-card-shadcn-ui/instructions.md",
+      "hash": "E4B90EC61212857AF3200874870964E6574B006F4D0055EAE8C3F1C36FF8873A",
+      "lines": 88,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/cards/focus-cards-accernity-ui/instructions.md",
+      "hash": "7E0CFE133A016FEE9C495EF5C666E01CCE4B4E5238D567974A9B2CC1B992F263",
+      "lines": 35,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/cards/pixel-cards-react-bits/instructions.md",
+      "hash": "C290DEA9BDA79ACFD44F9786D1509D85FFB7AB0E7DD4826E37C1129B6E94838A",
+      "lines": 851,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/cards/profile-card-react-bits/instructions.md",
+      "hash": "6B601CF02F875BAD08957B38426E64EDC1592A461216DF7AC4300D2450FA3E1E",
+      "lines": 681,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/cards/titled-card-react-bits/instructions.md",
+      "hash": "13ABFA5D83F129534C92AA1E292686F574078B8B157EB858952994B0ED6A7EC7",
+      "lines": 960,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/cards/wobble-cards-accernity-ui/instructions.md",
+      "hash": "429C67A62F799D4CCA664687E94A5DD324E936121AC386C86C46295DCB147C97",
+      "lines": 64,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/dialog-boxes-or-menu-shadcn-ui/instructions.md",
+      "hash": "9775BD3B5171082DEF6A6B4579EDC4ED34034079D3E9E53206F642B0DF732236",
+      "lines": 270,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/galleries/accordian-gallery-react-bits/instructions.md",
+      "hash": "7BAA20795C71591A25D53AEBC3713158DCA5E53593F743DCB8DF305D2BE3A7A0",
+      "lines": 451,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/galleries/circular-gallery-react-bits/instructions.md",
+      "hash": "9B75F50D47237C071140FE39DC83CC7DA6C7CC304C7D10E67C49D98B3D1DA2C8",
+      "lines": 1491,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/galleries/flex-carousel-react-bits/instructions.md",
+      "hash": "011AE0A185601DA5DA62753798C386A90DA6820AACB2D0824A5BE17CC857BFC7",
+      "lines": 1683,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/galleries/gradual-blur-react-bits/instructions.md",
+      "hash": "627D123EE1300B671072BB203411BF521870768DA0321AA403816DEF44423887",
+      "lines": 407,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/galleries/Masonry-react-bits/instructions.md",
+      "hash": "1F37CC38D37ECF233F96738F45D44C211A23EFEF9DD11998213A153913CA0D82",
+      "lines": 1478,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/reusable/lists/animated-list-react-bits/instructions.md",
+      "hash": "D2A1B710A2A83DB97FAAC9B3F09B9BE4FF33B9FC5C5B5CA5D6134BEA7E8A6802",
+      "lines": 902,
+      "status": "local instructions reviewed; referenced dependencies require verification"
+    },
+    {
+      "path": "ui-library/typographies/h1-shadcn-ui/instructions.md",
+      "hash": "CAC581C6287066722BC574E7F06AF4995850280FE55C4E3A6AB1670052080AD1",
+      "lines": 41,
+      "status": "local instructions reviewed; referenced primitives not available locally"
+    },
+    {
+      "path": "ui-library/typographies/h2-shadcn-ui/instructions.md",
+      "hash": "82EAF830ED52D1C04C74FE90D127BEBA0879F58CA3537B51D0E645E617A4E09E",
+      "lines": 41,
+      "status": "local instructions reviewed; referenced primitives not available locally"
+    },
+    {
+      "path": "ui-library/typographies/h3-shadcn-ui/instructions.md",
+      "hash": "2B6080CE32B46F6CE5C9501444D1CEED84C6A0214480B6B9E0060EAF1AB37DAE",
+      "lines": 41,
+      "status": "local instructions reviewed; referenced primitives not available locally"
+    },
+    {
+      "path": "ui-library/typographies/h4-shadcn-ui/instructions.md",
+      "hash": "7BB3FB9F3CBA1900987A5F0B0525225B69677B6B0C7018EF69673CF101B67F46",
+      "lines": 41,
+      "status": "local instructions reviewed; referenced primitives not available locally"
+    },
+    {
+      "path": "ui-library/typographies/italic-decent-shadcn-ui/instructions.md",
+      "hash": "A61E6762A5DCAC8FEAA33CB17F45EEB9ACF5FF79C8DF006C7E41ECC8674BCFF2",
+      "lines": 51,
+      "status": "local instructions reviewed; referenced primitives not available locally"
+    }
+  ],
+  "limitations": [
+    "No component code or package files edited.",
+    "All 65 hashes match previous turn baseline.",
+    "Chart and toolkit source missing; UI primitives imported via aliases are not supplied as separate files.",
+    "No browser execution; recommendations are source-based judgments.",
+    "License requires verification for all reviewed components; no explicit license terms in reviewed bundles.",
+    "All instruction bundles have source review, but no browser/runtime validation was performed."
+  ]
+}
