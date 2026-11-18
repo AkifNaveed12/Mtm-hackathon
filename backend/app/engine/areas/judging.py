@@ -1,26 +1,38 @@
-﻿from typing import Dict, Any
+import math
+from typing import Any
+from backend.app.engine.money import money, decimal
 from backend.app.schemas.plan import JudgingPlan
 
-def evaluate_judging(facts: Dict[str, Any]) -> JudgingPlan:
-    judges_confirmed = facts.get("judges_confirmed", 20)
-    honorarium = facts.get("honorarium_per_judge", 5000.0)
-    teams_count = facts.get("teams_count", 50)
-    mins_per_team = facts.get("minutes_per_team", 15)
-    
-    # Each judge handles no more than 3 teams
-    teams_per_judge = teams_count / judges_confirmed if judges_confirmed > 0 else 0
-    total_honoraria = judges_confirmed * honorarium
-    
-    # With 20 judges and 50 teams, 10 judges evaluate 3 teams (45m) and 10 judges evaluate 2 teams (30m).
-    # The judging window fits inside a 45-minute block.
-    duration_minutes = int(min(3, teams_per_judge + 0.99)) * mins_per_team
-    
-    return JudgingPlan(
-        confirmed_judges=judges_confirmed,
-        honorarium_per_judge=honorarium,
-        total_honoraria=total_honoraria,
-        teams_count=teams_count,
-        teams_per_judge=round(teams_per_judge, 2),
-        minutes_per_team=mins_per_team,
-        duration_minutes=duration_minutes
-    )
+def evaluate_judging(facts: dict[str, Any]) -> JudgingPlan:
+    confirmed = facts.get("judges_confirmed", 0)
+    teams = facts.get("teams_count", 0)
+    limit = facts.get("max_teams_per_judge", 0)
+    judges = facts.get("judges_attending", min(confirmed, math.ceil(teams / limit)) if limit else 0)
+    minutes = facts.get("minutes_per_team", 0)
+    honorarium = facts.get("honorarium_per_judge", 0)
+    assignments, unassigned = [], []
+    for index in range(teams):
+        identifier = f"T{index + 1:03d}"
+        if not judges or not limit or index // judges >= limit:
+            unassigned.append(identifier)
+            continue
+        slot = index // judges
+        assignments.append({"team_id": identifier, "judge_id": f"J{index % judges + 1:03d}",
+                            "slot": slot + 1, "start_minute": slot * minutes,
+                            "end_minute": (slot + 1) * minutes, "generated": True})
+    duration = math.ceil(teams / judges) * minutes if judges else 0
+    conflicts = []
+    if judges > confirmed:
+        conflicts.append("Required attending judges exceed the confirmed pool.")
+    if unassigned:
+        conflicts.append(f"{len(unassigned)} teams exceed confirmed judging capacity.")
+    if not minutes:
+        conflicts.append("Per-team judging duration is missing.")
+    return JudgingPlan(confirmed_judges=confirmed, selected_judges=judges,
+                       honorarium_per_judge=honorarium, total_honoraria=money(decimal(honorarium) * (confirmed if facts.get("pay_all_confirmed_judges") else judges)),
+                       teams_count=teams, teams_per_judge=teams / judges if judges else 0,
+                       max_teams_per_judge=limit, minutes_per_team=minutes, duration_minutes=duration,
+                       assignments=assignments, unassigned_teams=unassigned, conflicts=conflicts,
+                       availability=facts.get("judge_availability", []),
+                       valid=bool(teams and judges and minutes and limit and not unassigned and not conflicts))
+

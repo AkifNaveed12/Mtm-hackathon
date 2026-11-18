@@ -1,78 +1,90 @@
-﻿# -*- coding: utf-8 -*-
-"""
-HackPlan AI — Single Command CLI Runner for Mind to Machine Hackathon
-Usage:
-    python run.py [message_pack.txt]
-"""
+"""One command for a full message pack or one incremental message file."""
+from __future__ import annotations
+
+import json
 import sys
-import os
 import time
+from pathlib import Path
 
-# Ensure workspace root is in sys.path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
 
-from backend.app.engine.pipeline import global_engine
-from backend.app.engine.tracer import global_tracer
 
-def print_banner():
-    print("=" * 72)
-    print(" HACKPLAN AI - MIND TO MACHINE HACKATHON SINGLE-COMMAND RUNNER")
-    print(" Neuro-Symbolic Agentic Event Planner (Islamabad physical event)")
-    print("=" * 72)
+def main() -> int:
+    from backend.app.engine.ingestor import parse_raw_message_pack
+    from backend.app.engine.pipeline import global_engine
 
-def main():
-    start_time = time.time()
-    pack_file = sys.argv[1] if len(sys.argv) > 1 else 'sample_pack.txt'
-    
-    print_banner()
-    print(f">> Ingesting Message Pack: {pack_file}")
-    
-    if not os.path.exists(pack_file):
-        print(f"[ERROR] Specified message pack file does not exist: {pack_file}")
-        sys.exit(1)
-        
-    with open(pack_file, "r", encoding="utf-8") as f:
-        raw_text = f.read()
+    started = time.perf_counter()
+    source = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "sample_pack.txt"
+    try:
+        if source.stat().st_size > 256_000:
+            raise ValueError("Message file exceeds the 256 KB local limit.")
+        raw_text = source.read_bytes().decode("utf-8")
+    except (OSError, UnicodeError, ValueError):
+        print("Cannot read the message file. Supply an existing UTF-8 TXT file under 256 KB.")
+        return 1
+    if not raw_text.strip():
+        print("Message file is empty.")
+        return 1
+    print("HackPlan AI | Mind to Machine | local planning harness")
+    print(f"Input: {source.name}")
+    try:
+        messages = parse_raw_message_pack(raw_text)
+        is_full = len(messages) > 1 or not global_engine.active_facts
+        before_calls = global_engine.tracer.get_log().total_calls
+        if is_full:
+            plan, checks = global_engine.run_full_pipeline(raw_text)
+            accepted, rejection = checks.all_passed, None
+        else:
+            sender = messages[0].get("sender", "External") if messages else "External"
+            accepted, rejection, plan, checks = global_engine.process_incremental_message(raw_text, sender)
+        print(f"Operation: {'full plan' if is_full else 'incremental update'}")
+        if rejection:
+            print(f"REJECTED: {rejection}")
+            print("The previous plan was preserved.")
+        global_engine.tracer.print_trace()
+        print("\nQuality checks")
+        for field, label in [
+            ("figures_valid", "Figures"), ("budget_valid", "Budget"),
+            ("venue_fits", "Venue"), ("schedule_valid", "Schedule"),
+            ("enough_judges", "Judging"), ("all_areas_covered", "Coverage"),
+        ]:
+            print(f"  {label}: {'PASS' if getattr(checks, field) else 'FAIL'}")
+        print("\nOperational plan")
+        print(f"Venue: {plan.venue.selected_room or 'Unresolved'}; {plan.venue.capacity} seats; Rs {plan.venue.cost:,.2f}")
+        print(f"Schedule: {plan.schedule.total_duration_hours:g} hours; prayer break {plan.schedule.prayer_break_minutes} minutes")
+        for item in plan.schedule.timeline:
+            print(f"  {item.time_slot}: {item.activity} ({item.duration_mins} min)")
+        print(f"Food: {plan.food.headcount} meals; {plan.food.caterer_tier}; total Rs {plan.food.total_cost:,.2f}")
+        print(f"Judging: {plan.judging.confirmed_judges} confirmed judges; {plan.judging.selected_judges} assigned; {plan.judging.teams_count} teams")
+        print(f"Budget: Rs {plan.budget.total_projected:,.2f} of Rs {plan.budget.cap:,.2f}; remaining Rs {plan.budget.surplus_deficit:,.2f}")
+        for issue in plan.unresolved_constraints:
+            print(f"UNRESOLVED: {issue}")
+        elapsed = time.perf_counter() - started
+        log = global_engine.tracer.get_log()
+        artifact = {
+            "competition": "Mind to Machine Hackathon 2026",
+            "operation": "full" if is_full else "update", "accepted": accepted,
+            "rejection_reason": rejection, "duration_seconds": round(elapsed, 3),
+            "plan": plan.model_dump(), "checks": checks.model_dump(),
+            "trace": log.model_dump(),
+            "rejected_messages": [r.model_dump() for r in global_engine.rejected_records],
+        }
+        output_dir = ROOT / "data"
+        output_dir.mkdir(exist_ok=True)
+        (output_dir / "submission.json").write_text(json.dumps(artifact, indent=2, ensure_ascii=False), encoding="utf-8")
+        print(f"\nElapsed: {elapsed:.3f}s; limit: {120 if is_full else 60}s")
+        calls = log.total_calls - before_calls if not is_full else log.total_calls
+        print(f"Model calls for operation: {calls}; provider-reported trace tokens: {log.overall_total_tokens}")
+        if not log.usage_complete:
+            print("Some provider token usage was unavailable; totals include reported usage only.")
+        print("Saved plan and full trace: data/submission.json")
+        return 0 if checks.all_passed else 1
+    except Exception as exc:
+        # Provider exceptions may embed request headers. Never print exception text.
+        print(f"Planning failed ({type(exc).__name__}). Inspect the dashboard's safe execution diagnostics.")
+        return 1
 
-    print(">> Executing Neural Reading & Symbolic Invariant Verification Pipeline...")
-    plan, checks = global_engine.run_full_pipeline(raw_text)
-    
-    # 1. Print Official Execution Trace
-    global_tracer.print_trace()
-    
-    # 2. Print 6 Quality Checks
-    print("=" * 72)
-    print(" 6 CORE QUALITY CHECKS (COMPETITION INVARIANT GATE)")
-    print("=" * 72)
-    print(f" [1] Figures Sound:       {'[PASS]' if checks.figures_valid else '[FAIL]'} - {checks.details.figures_note}")
-    print(f" [2] Within Budget:       {'[PASS]' if checks.budget_valid else '[FAIL]'} - Spent Rs {checks.details.budget_spend:,.0f} / Cap Rs {checks.details.budget_cap:,.0f}")
-    print(f" [3] Venue Fits:          {'[PASS]' if checks.venue_fits else '[FAIL]'} - Capacity {checks.details.venue_capacity} seats (Required: {checks.details.headcount_required}) | Standby Gen: {checks.details.venue_generator}")
-    print(f" [4] Schedule Valid:      {'[PASS]' if checks.schedule_valid else '[FAIL]'} - Duration {checks.details.schedule_duration_mins} mins (4 hrs) | Prayer Break: {checks.details.prayer_break_mins} mins")
-    print(f" [5] Enough Judges:       {'[PASS]' if checks.enough_judges else '[FAIL]'} - {checks.details.judges_confirmed} confirmed judges (Ratio: {checks.details.teams_per_judge:.1f} teams/judge <= 3.0 cap)")
-    print(f" [6] All Areas Covered:   {'[PASS]' if checks.all_areas_covered else '[FAIL]'} - {', '.join(checks.details.areas_present)}")
-    print("-" * 72)
-    print(f" OVERALL COMPLIANCE STATUS: {'[ALL PASS - 100%]' if checks.all_passed else '[FAILURES DETECTED]'}")
-    print("=" * 72)
 
-    # 3. Print 5 Operational Plan Areas
-    print("\n" + "=" * 72)
-    print(" FINAL OPERATIONAL EVENT PLAN (5 AREAS)")
-    print("=" * 72)
-    print(f"VENUE:    {plan.venue.selected_room} ({plan.venue.capacity} seats, Rs {plan.venue.cost:,.0f}) | Generator: {plan.venue.generator_standby}")
-    print(f"          Rationale: {plan.venue.rationale}")
-    print(f"SCHEDULE: {plan.schedule.total_duration_hours:.1f} Hours (240 mins) | Prayer Break: {plan.schedule.prayer_break_minutes} mins")
-    for item in plan.schedule.timeline:
-        print(f"          * {item.time_slot} ({item.duration_mins}m): {item.activity}")
-    print(f"FOOD:     {plan.food.caterer_tier} x {plan.food.headcount} attendees @ Rs {plan.food.unit_cost:,.0f}/head = Rs {plan.food.total_cost:,.0f}")
-    print(f"          Delivery: {plan.food.delivery_terms}")
-    print(f"JUDGING:  {plan.judging.confirmed_judges} Judges x Rs {plan.judging.honorarium_per_judge:,.0f} = Rs {plan.judging.total_honoraria:,.0f}")
-    print(f"          {plan.judging.teams_count} Teams | {plan.judging.teams_per_judge} Teams/Judge (Max 3) | {plan.judging.minutes_per_team}m/team ({plan.judging.duration_minutes}m block)")
-    print(f"BUDGET:   Projected Spend: Rs {plan.budget.total_projected:,.0f} / Cap: Rs {plan.budget.cap:,.0f} | Surplus: Rs {plan.budget.surplus_deficit:,.0f}")
-    print("=" * 72)
-
-    elapsed = time.time() - start_time
-    print(f">> Total Execution Elapsed Time: {elapsed:.2f} seconds (Limit: 120s)")
-    print(">> Pipeline Run Complete.\n")
-
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    raise SystemExit(main())

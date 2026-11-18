@@ -1,66 +1,47 @@
-﻿import pytest
-from backend.app.engine.areas.venue import evaluate_venue, VENUE_OPTIONS
-from backend.app.engine.areas.schedule import evaluate_schedule
-from backend.app.engine.areas.food import evaluate_food
-from backend.app.engine.areas.judging import evaluate_judging
+"""Planner arithmetic and feasibility must respond to input, never sample constants."""
 from backend.app.engine.areas.budget import evaluate_budget
+from backend.app.engine.areas.venue import evaluate_venue
 
-def test_venue_evaluation_capacity_and_generator():
-    facts = {"headcount": 180, "backup_power_required": True}
+
+def test_venue_evaluation_uses_supplied_capacity_price_and_power():
+    facts = {"headcount": 115, "backup_power_required": True, "venues": [
+        {"name": "Small", "capacity": 90, "cost": 12000, "generator": True, "facilities": []},
+        {"name": "Cheap", "capacity": 150, "cost": 25000, "generator": False, "facilities": []},
+        {"name": "Resilient", "capacity": 130, "cost": 35000, "generator": True, "facilities": []},
+    ]}
     plan = evaluate_venue(facts)
-    assert plan.selected_room == "Hall B"
-    assert plan.capacity == 200
-    assert plan.cost == 150000.0
-    assert plan.generator_standby is True
-    assert plan.capacity >= 180
+    assert plan.selected_room == "Resilient"
+    assert plan.cost == 35000
+    assert plan.capacity >= 115
+    assert plan.generator_standby
 
-def test_venue_evaluation_rejects_insufficient_capacity():
-    # Room D has 80 seats, headcount is 180
-    assert VENUE_OPTIONS["Room D"]["capacity"] < 180
 
-def test_schedule_evaluation_duration_and_prayer_break():
-    facts = {"total_duration_hours": 4.0, "prayer_break_mins": 15}
-    plan = evaluate_schedule(facts)
-    assert plan.total_duration_hours == 4.0
-    assert plan.prayer_break_minutes == 15
-    total_slot_mins = sum(t.duration_mins for t in plan.timeline)
-    assert total_slot_mins == 240
-    # Verify prayer break is included
-    assert any("Prayer" in t.activity for t in plan.timeline)
+def test_generator_is_not_an_invented_requirement():
+    facts = {"headcount": 80, "backup_power_required": False, "venues": [
+        {"name": "Ordinary", "capacity": 90, "cost": 10000, "generator": False, "facilities": []},
+        {"name": "Powered", "capacity": 100, "cost": 20000, "generator": True, "facilities": []},
+    ]}
+    plan = evaluate_venue(facts)
+    assert plan.selected_room == "Ordinary"
 
-def test_food_evaluation_correct_math():
-    facts = {"headcount": 180, "caterer_rate": 1200.0, "caterer_tier": "Standard lunch box"}
-    plan = evaluate_food(facts)
-    assert plan.headcount == 180
-    assert plan.unit_cost == 1200.0
-    assert plan.total_cost == 180 * 1200.0
-    assert plan.total_cost == 216000.0
 
-def test_judging_evaluation_ratio_and_time():
-    facts = {
-        "judges_confirmed": 20,
-        "honorarium_per_judge": 5000.0,
-        "teams_count": 50,
-        "minutes_per_team": 15
-    }
-    plan = evaluate_judging(facts)
-    assert plan.confirmed_judges == 20
-    assert plan.total_honoraria == 100000.0
-    assert plan.teams_per_judge == 2.5
-    assert plan.teams_per_judge <= 3.0  # Max constraint
-    assert plan.duration_minutes <= 45
+def test_budget_decimal_arithmetic_is_exact():
+    facts = {"budget_cap": 1000, "expenses": {"printing": 12.35, "internet": 20.05}}
+    plan = evaluate_budget(facts, venue_cost=100.10, food_cost=200.20, judging_cost=300.30)
+    assert str(plan.total_projected) in ("633.0", "633", "633.00")
+    assert str(plan.surplus_deficit) in ("367.0", "367", "367.00")
 
-def test_budget_evaluation_cap_and_balance():
-    facts = {
-        "budget_cap": 650000.0,
-        "committed_prizes": 100000.0,
-        "committed_internet": 20000.0,
-        "committed_printing": 10000.0
-    }
-    plan = evaluate_budget(facts, venue_cost=150000.0, food_cost=216000.0, judging_cost=100000.0)
-    assert plan.cap == 650000.0
-    assert plan.total_committed == 130000.0
-    assert plan.total_variable == 466000.0
-    assert plan.total_projected == 596000.0
-    assert plan.surplus_deficit == 54000.0
-    assert plan.total_projected <= plan.cap
+
+def test_judge_allocation_never_exceeds_team_cap(engine, varied_pack):
+    plan, checks = engine.run_full_pipeline(varied_pack, mode="offline")
+    assert checks.enough_judges
+    assert plan.judging.teams_per_judge <= 3
+    assert plan.judging.duration_minutes >= plan.judging.minutes_per_team
+
+
+def test_food_and_budget_line_items_add_up(engine, varied_pack):
+    plan, _ = engine.run_full_pipeline(varied_pack, mode="offline")
+    assert plan.food.total_cost >= plan.food.headcount * plan.food.unit_cost
+    included = [item.amount for item in plan.budget.line_items if item.status != "REJECTED"]
+    assert sum(included) == plan.budget.total_projected
+    assert plan.budget.cap - plan.budget.total_projected == plan.budget.surplus_deficit

@@ -1,5 +1,9 @@
 # HackPlan AI — Master Execution Plan & Strategy
 
+## Current execution override
+
+The active user request is local-only completion and verification. Do not commit, push, merge, or deploy. Earlier submission/deployment instructions below do not apply to this session. Model bonus eligibility is unverified until checked against the organizers' list; no score is guaranteed. Actual progress and quality gates are recorded in root `PROJECT_COMPLETION_REPORT.md`.
+
 ## 1. High-Level Strategy & Winning Formula
 
 To achieve a winning score at the Mind to Machine Hackathon, HackPlan AI optimizes across all evaluation dimensions:

@@ -1,5 +1,11 @@
 # HackPlan AI — Implementation Planning & Task Breakdown
 
+## Active local scope
+
+The current task follows the user's ten completion phases with independent frontend, backend/AI, and QA work under the existing Project Lead. Commits, pushes, deployments, voice features, and live WhatsApp sends are excluded. The root completion report is the current implementation/test checklist; the original roadmap below remains historical planning context.
+
+Frontend component adaptations preserve every library original: `dashboards/data-tables/simple-data-table-shadcn-ui` supplies table structure; `reusable/cards/decent-plain-card-shadcn-ui` informs panels/statistics; `reusable/buttons/shadcn-ui-buttons` informs action controls; `reusable/dialog-boxes-or-menu-shadcn-ui` informs accessible confirmation dialogs; `navigation/sidebars/line-sidebar-react-bits` informs stable sidebar navigation. The integrated implementation is `frontend/components/ui.tsx`; dependencies/behavior were reduced to the actual dashboard requirements.
+
 ## 1. Overview & Execution Rules
 
 This planning document decomposes the approved product definition (`idea.md`) and technical architecture (`ARCHITECTURE.md`) into executable, verifiable tasks.

@@ -1,5 +1,9 @@
 # HackPlan AI — Design System & Visual Specification
 
+## Implementation clarification
+
+All numerical dashboard examples below are illustrative and must be replaced by backend state. Empty workspaces show empty states. Actual provider configuration and execution mode replace any static model/bonus claims. The completed local interface includes message import, five domain views, actual traces, rejections, version comparisons/exports, and consent-aware WhatsApp previews. Generator backup is displayed as a facility and enforced only when source messages require it. Confirmed/available judges and generated assignments are displayed separately. Live WhatsApp sends are disabled by default.
+
 ## 1. Visual Identity & Art Direction
 
 - **Design Philosophy**: *Command Terminal / Operational Flight Deck*.

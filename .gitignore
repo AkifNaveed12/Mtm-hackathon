@@ -29,3 +29,19 @@ yarn-error.log*
 # System files
 .DS_Store
 Thumbs.db
+
+# Private local application state and generated verification artifacts
+data/
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+.pytest_cache/
+test-results/
+playwright-report/
+artifacts/
+.local-services.json
+.local-logs/
+.env.*
+!.env.example

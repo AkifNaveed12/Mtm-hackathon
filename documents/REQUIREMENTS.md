@@ -1,5 +1,11 @@
 # HackPlan AI — System Requirements & Traceability
 
+## Source correction and verification authority
+
+The PDF was inspected in full on 18 November 2026. This document's earlier sample-specific figures are examples, not constraints for unseen packs. The official brief does not mandate a generator, a specific venue, or standard-tier meals. Required judges are calculated from workload; the sample can use 17 assigned of 20 available judges, producing the brief's 177 meals without hardcoding that number. Explicit source attendance and committed payments override generated staffing choices. Small-model bonus eligibility requires the organizers' list; it must never be assumed from a model name.
+
+The current request requires local operation only: no commit, push, deployment, voice, or live WhatsApp send. The implementation and test mapping, actual performance, external blockers, and incomplete requirements are tracked in root `PROJECT_COMPLETION_REPORT.md`. The backend must identify unsupported constraints instead of silently passing them.
+
 ## 1. Requirement Priorities
 
 - **P0 (Mandatory MVP)**: Strict hackathon competition requirements. Failure to satisfy any P0 results in point deduction or disqualification.

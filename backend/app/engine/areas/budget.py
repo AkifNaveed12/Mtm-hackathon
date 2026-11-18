@@ -1,31 +1,25 @@
-﻿from typing import Dict, Any, List
+from typing import Any
+from backend.app.engine.money import total, decimal, money
 from backend.app.schemas.plan import BudgetPlan, BudgetLineItem
 
-def evaluate_budget(facts: Dict[str, Any], venue_cost: float, food_cost: float, judging_cost: float) -> BudgetPlan:
-    budget_cap = facts.get("budget_cap", 650000.0)
-    prizes = facts.get("committed_prizes", 100000.0)
-    internet = facts.get("committed_internet", 20000.0)
-    printing = facts.get("committed_printing", 10000.0)
-    
-    total_committed = prizes + internet + printing
-    total_variable = venue_cost + food_cost + judging_cost
-    total_projected = total_committed + total_variable
-    surplus_deficit = budget_cap - total_projected
-    
-    line_items = [
-        BudgetLineItem(category="Prizes", item="Winner & Runner-up awards", amount=prizes, status="COMMITTED"),
-        BudgetLineItem(category="Infrastructure", item="Dedicated backup internet link", amount=internet, status="COMMITTED"),
-        BudgetLineItem(category="Materials", item="Badges, certificates, directional signs", amount=printing, status="COMMITTED"),
-        BudgetLineItem(category="Venue", item="Hall B rental with standby generator", amount=venue_cost, status="VARIABLE"),
-        BudgetLineItem(category="Catering", item="Standard lunch box x 180 headcount", amount=food_cost, status="VARIABLE"),
-        BudgetLineItem(category="Judging", item="Judge honoraria (20 judges x Rs 5,000)", amount=judging_cost, status="VARIABLE"),
-    ]
-    
-    return BudgetPlan(
-        cap=budget_cap,
-        total_committed=total_committed,
-        total_variable=total_variable,
-        total_projected=total_projected,
-        surplus_deficit=surplus_deficit,
-        line_items=line_items
-    )
+def evaluate_budget(facts: dict[str, Any], venue_cost: float, food_cost: float, judging_cost: float) -> BudgetPlan:
+    expenses = facts.get("expenses", {})
+    if not expenses:
+        expenses = {key.removeprefix("committed_"): value for key, value in facts.items() if key.startswith("committed_")}
+    lines = [BudgetLineItem(category="Committed", item=label.replace("_", " ").title(), amount=amount,
+                            status="COMMITTED") for label, amount in expenses.items()]
+    lines.extend(BudgetLineItem(category=label, item=label, amount=amount, status="VARIABLE") for label, amount in
+                 (("Venue", venue_cost), ("Catering", food_cost), ("Judge honoraria", judging_cost)))
+    committed, variable = total(expenses.values()), total([venue_cost, food_cost, judging_cost])
+    projected = total([committed, variable])
+    cap = facts.get("budget_cap", 0)
+    remaining = money(decimal(cap) - decimal(projected))
+    warnings = []
+    if remaining < 0:
+        warnings.append(f"Planned expenses exceed the approved budget by Rs {-remaining:,.2f}.")
+    if facts.get("proposals"):
+        warnings.append(f"{len(facts['proposals'])} unapproved proposal(s) excluded from expenditure.")
+    return BudgetPlan(cap=cap, total_committed=committed, total_variable=variable,
+                      total_projected=projected, surplus_deficit=remaining, line_items=lines,
+                      warnings=warnings, valid=cap > 0 and remaining >= 0)
+

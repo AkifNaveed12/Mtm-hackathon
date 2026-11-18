@@ -1,5 +1,9 @@
 # HackPlan AI — Complete Product Definition
 
+## Local completion decisions
+
+The latest user request extends the existing product with persistent message/fact/constraint history, eleven integrated dashboard sections, and the already-configured WhatsApp REST bot. All work stays local; voice, deployment, Git commits/pushes, and live sends are excluded. Earlier sample figures below are illustrative. The source PDF does not mandate generator backup or a particular meal tier. For the sample, 17 assigned judges of 20 available produces 177 meals; generated staffing assumptions are disclosed, with explicit source attendance taking precedence. No model or small-model bonus status is claimed without verification.
+
 ## 1. Product Identity
 
 - **Project Name**: HackPlan AI (Mind to Machine Hackathon Operations Engine)

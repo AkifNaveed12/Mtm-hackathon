@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HackPlan AI frontend
 
-## Getting Started
+The Next.js dashboard uses the local FastAPI backend. It does not automatically generate a plan or send notifications on page load.
 
-First, run the development server:
+From the repository root, start the backend in a PowerShell terminal:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```powershell
+.\.venv\Scripts\python.exe -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Start the frontend in another terminal:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```powershell
+cd D:\mtmm\Mtm-hackathon\frontend
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open http://localhost:3000. To run the compiled frontend:
 
-## Learn More
+```powershell
+npm run build
+npm start -- --hostname 127.0.0.1 --port 3000
+```
 
-To learn more about Next.js, take a look at the following resources:
+Use one frontend server on port 3000 at a time. Stop the development server before building or starting production mode.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For a different backend address, copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_API_URL`. This value is public: never put provider keys in it. The optional `NEXT_PUBLIC_ENABLE_AGENTATION=true` enables the existing annotation tool in development only. Fonts use the system sans-serif stack, so builds do not need Google Fonts connectivity.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+In Message center, select **Offline parser** for deterministic processing without provider calls, or require the configured live provider. The UI shows extracted facts, constraint warnings, plan versions, actual model traces, and provider-reported usage. WhatsApp notification controls only save dry-run previews.
 
-## Deploy on Vercel
+If the backend requires `ORGANIZER_API_KEY`, open **Organizer access** and enter the local organizer key. The frontend retains it in memory for the current page session; no browser storage is used.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Checks:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```powershell
+npm run lint
+npm run build
+npm audit --omit=dev
+```
+
+Source formatting is available with `npm run format`. Browser integration tests live under the root `tests/browser/` directory. See the root completion report for executed checks and remaining external integration blockers.

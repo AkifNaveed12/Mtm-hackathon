@@ -1,108 +1,109 @@
-﻿# Complete 360° QA & Project Testing Audit Report
-**Project**: HackPlan AI (Mind to Machine Hackathon 2026)  
-**Date**: November 18, 2026  
-**Git Branch**: `UI-testing`  
-**Test Authority**: Senior QA Automation Engineer, AI Systems Engineer, DevSecOps Engineer
+# Local QA verification report
 
----
+Verified on 18 November 2026 in the existing Windows workspace. Changes stayed local. No commits, pushes, deployments, voice integrations, or real WhatsApp sends were performed by QA.
 
-## 1. Executive Summary
+## Executed results
 
-| Category | Value | Status |
+| Verification | Result | Evidence |
 |---|---|---|
-| **Total Automated Tests Executed** | 22 Backend/Agent Tests + 4 Frontend Build Targets | **100% PASSED** |
-| **Backend & API Tests** | 9 / 9 Passed | PASS |
-| **Competition Compliance Tests** | 4 / 4 Passed | PASS |
-| **5 Planning Modules Tests** | 6 / 6 Passed | PASS |
-| **Security & Leakage Tests** | 3 / 3 Passed | PASS |
-| **Frontend TypeScript Build** | Next.js 16.4.6 / React 19 / Webpack | PASS |
-| **Single-Command CLI Runner** | `python run.py sample_pack.txt` | PASS (72.48s live Groq, 0.4s fast mode) |
-| **Vapi Voice Integration** | Not Implemented | **NOT IMPLEMENTED** |
+| Backend, API, schemas, deterministic planning, state, tracing, security, and mocked integration tests | **104 passed, 0 failed, 0 skipped** | `.venv\Scripts\python.exe -m pytest tests -q` (2.33 seconds in the final run) |
+| Headless Chrome browser journeys against the running local frontend and backend | **12 passed, 0 failed** | `artifacts/browser/browser-report.json` |
+| Browser JavaScript/console errors during the complete final journey | **0** | Browser report |
+| Unexpected failed HTTP responses during the complete final journey | **0** | Browser report |
+| Production frontend dependency advisory audit | **0 reported vulnerabilities** | `npm audit --omit=dev --json` executed successfully |
+| Official PDF extraction and comparison | **Verified** | `artifacts/official-theme-extracted.txt` |
 
----
+The browser used installed Google Chrome in headless mode through `playwright-core`. The Python Playwright download was canceled because it was unnecessarily large and slow; the completed Node browser suite is the executed evidence. All screenshots and exports are generated local artifacts.
 
-## 2. Repository & Branch Management
+## Verified user journeys
 
-- **Target Branch**: `UI-testing`
-- **Source of Truth**: `origin/UI-testing`
-- **Main Branch Protection**: `main` remained completely untouched and unmerged, in strict compliance with instructions.
-- **Dependency Installed**: `agentation` (`npm install agentation -D` in `frontend/package.json` devDependencies).
+The browser suite exercised actual frontend requests and local SQLite-backed APIs, without replacing planning results with mocked UI data:
 
----
+1. Rendered styling, sidebar dimensions, dashboard, dark colors, and empty-state behavior.
+2. TXT upload, preservation of original CRLF file contents in the submitted request, processing-mode selection, confirmation dialog, and offline generation.
+3. All eleven navigation sections on desktop and at a 390-pixel mobile viewport, including table containment and closing mobile navigation.
+4. Search of persisted original messages.
+5. Exact official Finance printing update: expenditure rises by Rs 5,000, with venue, schedule, food, and judging unchanged.
+6. Exact official 100-box catering message: rejected with a reason; the complete prior plan remains unchanged.
+7. Saved-version comparison and JSON, human-readable report, and full trace downloads.
+8. WhatsApp recipient consent, safe preview creation, opt-out, and removal from the consented selection list. Every notification request had `dry_run: true`.
+9. Accessible labels for form controls and names for icon buttons.
+10. Simulated backend connection failure and successful recovery after restoring connectivity.
 
-## 3. Discovered Frameworks & Components
+Screenshots of the dashboard, every management section, mobile dashboard, and mobile assignments were captured under `artifacts/browser/`; representative desktop and mobile screenshots were visually reviewed.
 
-- **Frontend**: Next.js 16.4.6 (App Router), React 19.3.0, TypeScript 5, Tailwind CSS 4, Agentation 3.1.2.
-- **Backend API**: FastAPI 0.162.5, Uvicorn, Starlette, Pydantic 2.14.3.
-- **AI & Reasoning**: Groq SDK 1.7.0 with live high-speed `qwen/qwen3.8-27b` inference, fallbacked by a deterministic neuro-symbolic reasoning engine.
-- **Testing Frameworks**: `pytest 9.2.0`, `fastapi.testclient.TestClient`.
-- **CLI Runner**: `run.py` (Universal entrypoint for volunteers and judges).
+## Backend coverage
 
----
+Tests use a fresh in-memory or temporary SQLite database, disable live AI credentials in the test process, and forbid live WhatsApp sending. No application database or configured credential is deleted or overwritten by pytest.
 
-## 4. Detailed Component Audit & Test Results
+Covered behavior includes:
 
-### 4.1. 5 Planning Modules (Section 6)
-- **Venue**: Verified against 180 headcount constraint (150 students + 10 staff + 20 judges). Correctly rejected Room D (80 seats) and Hall A (lacks generator). Hall B (200 seats @ Rs 150,000 + standby generator) selected for Islamabad power stability.
-- **Schedule**: Enforces 240-minute total duration (4.0 hours) and mandatory 15-minute prayer break. Verified 45-minute judging session window.
-- **Food & Catering**: Verified against headcount of 180. Evaluates updated 12 Nov WhatsApp quote (Rs 1,200/head standard lunch box, free delivery). Total verified: 180 x Rs 1,200 = Rs 216,000.
-- **Judging**: Verified 20 confirmed judges evaluating 50 teams at 2.5 teams/judge (satisfies <= 3.0 teams/judge ceiling). Total honoraria = 20 x Rs 5,000 = Rs 100,000.
-- **Budget**: Verified against Rs 650,000 cap. Committed expenses (Prizes Rs 100k + Internet Rs 20k + Printing Rs 10k = Rs 130k). Variable expenses (Venue Rs 150k + Food Rs 216k + Judging Rs 100k = Rs 466k). Total projected: Rs 596,000. Surplus: Rs 54,000.
+- All core and domain API routes, current facts and constraints, messages, history, executions, predictions, and exports.
+- Six operational checks, derived teams and meals, unique generated team assignments, judge workload, and exact Decimal-based money calculations.
+- A synthetic unseen-style pack with different participants, team size, staff, judges, honoraria, budget, venue options, catering rates, and event length.
+- Latest dated quote precedence even when older and newer source blocks are reordered.
+- Required generator selection, additional breaks, source-defined opening duration, infeasible breaks, and late-judge availability conflicts.
+- Unsupported logical restrictions remain unresolved; a recognized rule in the same message cannot hide an unknown rule.
+- Approved constraint statuses and comparison aliases are enforced; unknown effective statuses remain unresolved. Source-validation guards prevent a model from inventing a power requirement or treating a message-header date as the event date.
+- Authorized participant changes recompute derived team totals, judge selection, meals, venue capacity, and budget.
+- Explicit attendance and payment of every confirmed judge override the generated minimum-judge assumption.
+- Valid updates, invalid updates, duplicate expense canonicalization, exact rollback, and persistence across new engine instances.
+- Negative/NaN costs, invalid clocks, missing activity names, negative durations, unknown model-output fields, malformed requests, oversized inputs, and filesystem path traversal.
+- Optional organizer-key enforcement, untrusted-Origin rejection, safe local CORS, source-authority rejection, and prompt-injection rejection.
+- Mocked model SDK boundary: actual returned model identifier, exact request/output trace, reported usage, missing usage, missing total usage, no invented totals, bounded retries, failure recording, and sanitized diagnostics.
+- Mocked WhatsApp transport: provider path/authentication, no-network previews, consent, dual live-send gates, idempotency, timeout ambiguity without retry, rate limits, atomic recipient validation, signed webhooks, duplicate events, delivery progression, STOP handling, safe malformed-provider responses, and persistence.
 
-### 4.2. Competition Compliance & Practice Scenarios (Section 7)
-1. **Sample Pack Baseline**: Generates full valid plan covering all 5 domains and passing all 6 invariant checks.
-2. **Practice Message 1 (Printing +Rs 5,000)**: Accepted by Selective Domain Router (`budget`). Total budget updated to Rs 601,000 (still <= Rs 650,000 cap). Invariant gate remained green.
-3. **Practice Message 2 (Catering Sabotage Reduction to 100 Meals)**: Caught and rejected by Conflict Arbiter (`food`). Reason logged in trace: *"Conflict detected: Proposed 100 meals leaves 80 verified attendees without food."* Active plan preserved without corruption.
-4. **Numbered Sequential Trace**: Numbered calls (#1 to #6), permitted area tags (`reading`, `venue`, `schedule`, `food`, `judging`, `budget`), exact model name (`qwen/qwen3.8-27b`), prompt tokens, completion tokens, and overall total tokens reported.
+## Official competition requirements
 
-### 4.3. Frontend & UI Testing (Section 3)
-- Scaffolding: Next.js 16 app in `frontend/` matching specifications from `documents/DESIGN.md`.
-- Components Implemented:
-  - Screen 1: Top Operational Flight Deck with live provider indicator, re-run trigger, and export CTA.
-  - Screen 2: 6 Core Quality Checks Hero Banner with live status ribbons.
-  - Screen 3: 5-Area Overview Cards and Line-Item Ledger Tables.
-  - Screen 4: Sequential Execution Trace viewer with token counter.
-  - Screen 5: Rejected Messages & Conflict Log.
-  - Screen 6: Interactive Message Console with one-click practice scenario triggers.
-  - Agentation visual feedback toolbar integrated.
-- Build Verification: Clean production build with Webpack and TypeScript (`0 type errors`, `0 build errors`).
+| Official requirement | QA verification |
+|---|---|
+| Read original message files; no pack facts typed into application logic | File-upload request preserves original text; synthetic pack changes all primary figures; source-backed planners tested |
+| One command for initial pack and subsequent messages | Root separately verified the CLI with three subprocesses; see completion report and `scripts/verify_cli.py` |
+| Five planning areas and six validity checks | Official sample and synthetic pack pass all six checks |
+| Numbered calls, exact model, permitted area tag, complete input/output, provider usage and totals | Trace and mocked-SDK tests pass; exact untruncated terminal trace tested |
+| Accept new messages and recalculate affected areas | Printing update preserves four unaffected domain snapshots; participant-change dependency regression passes |
+| Reject conflicting messages and preserve the valid plan | Official catering update and budget-overrun rollback tests pass |
+| Initial run within 120 seconds; updates within 60 seconds and at most five calls | Deterministic tests pass within limits; real-provider benchmark belongs to the completion report |
+| UI clearly shows plan, trace, and rejections | Actual browser journey covers all three and exports |
+| Unseen restrictions cannot be silently discarded | Unknown and mixed known/unknown rule tests pass; unsupported restrictions are reported for review |
+| Small-model bonus | Not certified: the organizers' approved model list has not been supplied |
 
-### 4.4. Security & Leakage Audit (Section 8)
-- **Tracked Secrets**: Zero hardcoded secrets, API keys, or private tokens in tracked repository files.
-- **Gitignore Protection**: `.env` and `.env.local` are explicitly ignored and omitted from Git.
-- **Defensive Audit**: Tested for malicious prompt injections inside message packs attempting environment disclosure or plan state override; engine successfully neutralized injections while keeping invariants intact.
-- **Syntax Fix Applied**: Resolved unquoted multi-line `curl` code block in `.env` that caused `python-dotenv` parse warnings.
+The PDF and `documents/official-theme.md` agree in substantive content. Encoding artifacts and layout differ. The PDF says 177 people to feed, while its sample lists 150 students, 10 staff, and 20 confirmed judges. The implemented, disclosed planning interpretation selects the minimum 17 judges needed for 50 teams at three teams per judge; this produces 177 meals. Source requirements for full attendance or payment override that generated decision. Neither standby power nor a particular meal tier is mandated by the PDF.
 
-### 4.5. Vapi Integration (Section 9)
-- **Status**: **NOT IMPLEMENTED**. Vapi voice integration is not currently deployed in this codebase.
+## Findings fixed during QA
 
----
+- A per-judge limit of three teams was incorrectly parsed as the total team count.
+- The exact printing-bill sentence created a duplicate expense label and added Rs 20,000 instead of Rs 5,000.
+- Derived team totals remained stale after a participant-count change.
+- Model-output schemas accepted negative/NaN expenses, malformed clocks, and invalid activity records.
+- The judge table omitted actual slot/start/end fields supplied by the backend.
+- Malformed provider JSON arrays could escape safe WhatsApp error handling.
+- Missing provider totals could be synthesized rather than remaining unavailable.
 
-## 5. Performance Benchmarks
+Each fixed behavior has a regression test or was rechecked through the browser. Early browser-run failures caused by CRLF textarea normalization, changing badge accessible names, asynchronous UI refresh, and animation timing were corrected in test synchronization; the final suite passes without weakening application validation.
 
-| Operation | Measured Time | Competition Limit | Compliance |
-|---|---|---|---|
-| **CLI Full Run (Live Groq LLM)** | 72.48 seconds | 120 seconds | **PASS** |
-| **CLI Full Run (Local Fast Engine)** | 0.38 seconds | 120 seconds | **PASS** |
-| **Incremental Update (Printing)** | 1.82 seconds | 60 seconds | **PASS** |
-| **Incremental Rejection (Catering)** | 1.45 seconds | 60 seconds | **PASS** |
-| **Frontend Production Build** | 18.1 seconds | N/A | **PASS** |
+## Boundaries and remaining verification
 
----
+The automated AI adapter tests are explicitly mocked. They do not prove real-provider latency or extraction quality. Root's separately bounded real-provider benchmark and its actual trace/token results belong in `PROJECT_COMPLETION_REPORT.md`.
 
-## 6. Exact Reproduction Commands
+WhatsApp delivery is not verified. No live send was authorized or performed. An externally reachable signed webhook relay, provider event support, and any account-specific template or messaging-window requirements remain external dependencies. The configured custom provider does not advertise a template catalog.
 
-```bash
-# 1. Activate environment
-.venv\Scripts\activate
+The production dependency audit reported no advisories; that result is not a guarantee that all dependencies or application paths are vulnerability-free. Python dependency-audit findings and remediation are reported by root. This is a local organizer application; remote access requires explicit organizer-key configuration.
 
-# 2. Run single-command CLI runner
-python run.py sample_pack.txt
+## Reproduce
 
-# 3. Run full automated backend, compliance, and security test suite
-python -m pytest tests/ -v
+```powershell
+Set-Location 'D:\mtmm\Mtm-hackathon'
+& .\.venv\Scripts\python.exe -m pytest tests -q
 
-# 4. Build frontend
-cd frontend
-npm run build
+# With the local frontend and backend running:
+node .\tests\browser\smoke.mjs
+
+# If browser test dependencies need installation:
+npm --prefix .\tests\browser install --ignore-scripts
+
+# Optional Chrome path override:
+$env:CHROME_PATH = 'C:\Program Files\Google\Chrome\Application\chrome.exe'
 ```
+
+The browser suite creates local sample plan versions, a clearly named test recipient, safe notification previews, and opt-out records. Run the final real-provider benchmark after the browser suite if the dashboard should finish with a real-provider trace.

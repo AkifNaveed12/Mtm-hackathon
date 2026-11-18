@@ -1,5 +1,13 @@
 # HackPlan AI — Technical Architecture & System Design
 
+## Local implementation correction (18 November 2026)
+
+The official PDF and the latest local-only user request take precedence over the illustrative sample numbers below. No deployment, Git commits/pushes, voice, or live WhatsApp sends are authorized. The implemented architecture uses FastAPI, Pydantic extraction, a finite LangGraph workflow, deterministic domain engines, and SQLite transactions/versioned state. Only actual provider calls appear as model calls; offline parsing is explicitly identified and has no invented token usage. Domain arithmetic requires no model calls.
+
+Generator backup is a constraint only when messages require it. Choose among feasible source-provided options rather than requiring Hall B. The sample's 177-meal statement is reconciled by assigning the minimum 17 judges needed for 50 teams at three teams per judge, from 20 available judges. Generated assignments and selected attendance are distinguished from source facts; explicit attendance/expense instructions override this staffing assumption. Unsupported constraints remain unresolved and prevent a valid-plan claim.
+
+The custom WhatsApp bot is an existing separate REST service. The backend stores recipient consent, previews, notifications, and signed-webhook records in a private local SQLite file. Network verification is read-only; live sending requires explicit server configuration plus individual confirmation. Its upstream send schema and public webhook relay remain subject to external verification.
+
 ## 1. Architectural Philosophy: Neuro-Symbolic Agentic Architecture
 
 HackPlan AI employs a **Neuro-Symbolic Architecture** that divides event planning responsibilities between two complementary paradigms:

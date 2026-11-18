@@ -1,46 +1,30 @@
-﻿from typing import Dict, Any, List
+from typing import Any
 from backend.app.schemas.plan import VenuePlan
 
-# Standard venue rooms described in messages
-VENUE_OPTIONS = {
-    "Room D": {"capacity": 80, "cost": 40000.0, "generator": False},
-    "Hall A": {"capacity": 200, "cost": 120000.0, "generator": False},
-    "Hall B": {"capacity": 200, "cost": 150000.0, "generator": True},
-    "Hall C": {"capacity": 300, "cost": 220000.0, "generator": True},
-}
-
-def evaluate_venue(facts: Dict[str, Any]) -> VenuePlan:
-    headcount = facts.get("headcount", 180)
-    prefer_generator = facts.get("backup_power_required", True)
-    
-    # Check eligible rooms that fit headcount
-    eligible = []
-    for name, opt in VENUE_OPTIONS.items():
-        if opt["capacity"] >= headcount:
-            if prefer_generator:
-                if opt["generator"]:
-                    eligible.append((name, opt))
-            else:
-                eligible.append((name, opt))
-                
+def evaluate_venue(facts: dict[str, Any]) -> VenuePlan:
+    required = facts.get("headcount", 0)
+    options, eligible = [], []
+    for original in facts.get("venues", []):
+        option = dict(original)
+        issues = []
+        if option["capacity"] < required:
+            issues.append(f"Capacity {option['capacity']} below required {required}.")
+        if facts.get("backup_power_required") and not option.get("generator"):
+            issues.append("A required standby generator is unavailable.")
+        missing = set(facts.get("required_facilities", [])) - set(option.get("facilities", []))
+        if missing:
+            issues.append("Missing facilities: " + ", ".join(sorted(missing)))
+        if facts.get("selected_venue") and option["name"].lower() != facts["selected_venue"].lower():
+            issues.append("Does not match the requested venue.")
+        option.update(eligible=not issues, validation_errors=issues)
+        options.append(option)
+        if not issues:
+            eligible.append(option)
     if not eligible:
-        # Fallback to largest room
-        name, opt = "Hall C", VENUE_OPTIONS["Hall C"]
-    else:
-        # Pick lowest cost among eligible
-        eligible.sort(key=lambda x: x[1]["cost"])
-        name, opt = eligible[0]
-        
-    rationale = (
-        f"Selected {name} (seats {opt['capacity']} vs {headcount} required) "
-        f"at Rs {opt['cost']:,.0f}. Standby generator: {opt['generator']} "
-        f"(protects against Islamabad power cuts)."
-    )
-    
-    return VenuePlan(
-        selected_room=name,
-        capacity=opt["capacity"],
-        cost=opt["cost"],
-        generator_standby=opt["generator"],
-        rationale=rationale
-    )
+        return VenuePlan(required_seating=required, options=options, issues=["No source venue satisfies seating and facility constraints."])
+    selected = min(eligible, key=lambda item: (item["cost"], item["capacity"]))
+    return VenuePlan(selected_room=selected["name"], capacity=selected["capacity"], cost=selected["cost"],
+                     generator_standby=selected.get("generator", False), facilities=selected.get("facilities", []),
+                     required_seating=required, options=options, valid=required > 0,
+                     rationale=f"Lowest quoted cost among feasible venues: {selected['capacity']} seats for {required} attendees. Generator availability is enforced only when a source requires it.")
+
