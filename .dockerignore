@@ -1,0 +1,14 @@
+.git
+.github
+.agents
+node_modules
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.local
+.next
+dist
+build
+ui-library

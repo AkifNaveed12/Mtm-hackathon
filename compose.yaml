@@ -1,0 +1,14 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - \"8000:8000\"
+    env_file:
+      - .env
+    environment:
+      - ENVIRONMENT=development
+    volumes:
+      - ./backend:/app
+      - ./sample_pack.txt:/app/sample_pack.txt
